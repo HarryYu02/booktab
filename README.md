@@ -1,4 +1,6 @@
-<<<<<<< HEAD
+# booktab
+
+An opensource chrome extension that allows users to quickly search and navigate through bookmarks, bookmark folders, and tabs with keyboards only.
 
 # React + TypeScript + Vite
 
@@ -30,9 +32,3 @@ export default {
 -   Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 -   Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 -   Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-
-# booktab
-
-An opensource chrome extension that allows users to quickly search and navigate through bookmarks, bookmark folders, and tabs with keyboards only.
-
-> > > > > > > d6a654c364cdd84995d4229c600972fd5fb20a65
