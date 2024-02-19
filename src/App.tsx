@@ -95,7 +95,10 @@ function App() {
                     {tabData.map((tab) => {
                         return tab.title
                             ?.toUpperCase()
-                            .includes(searchText.toUpperCase()) ? (
+                            .includes(searchText.toUpperCase()) ||
+                            tab.url
+                                ?.toUpperCase()
+                                .includes(searchText.toUpperCase()) ? (
                             <li
                                 className="px-5 justify-between flex items-center"
                                 key={tab.id}
@@ -122,7 +125,10 @@ function App() {
                     {bookmarkData.map((bookmark) => {
                         return bookmark.title
                             ?.toUpperCase()
-                            .includes(searchText.toUpperCase()) ? (
+                            .includes(searchText.toUpperCase()) ||
+                            bookmark.url
+                                ?.toUpperCase()
+                                .includes(searchText.toUpperCase()) ? (
                             <li
                                 className="px-5 justify-between flex items-center"
                                 key={bookmark.id}
