@@ -1,6 +1,48 @@
-# booktab
+# BookTab
 
-A chrome extension that allows users to quickly search and navigate through bookmarks, bookmark folders, and tabs with keyboards only.
+BookTab is a Chrome extension that allows users to quickly search and navigate through bookmarks, bookmark folders, and tabs using keyboard shortcuts.
+
+## Technologies Used
+
+-   Chrome Extension Manifest V3 API
+-   Vite (Build tool)
+-   CRXJS/vite-plugin (Support for Chrome Extension API)
+-   React
+-   TypeScript
+-   Tailwind CSS
+-   ShadcnUI
+
+## Installation and Usage
+
+To try out BookTab:
+
+1. Clone the project repository.
+2. Install all dependencies using `yarn install`.
+3. Run the project locally using `yarn dev`.
+4. Go to `chrome://extensions/`.
+5. Enable Developer Mode.
+6. Click "Load unpacked" and select the `dist` folder in the project directory.
+7. Start using BookTab.
+
+## Keyboard Shortcuts
+
+BookTab supports the following keyboard shortcuts:
+
+-   **Open Extension**: Ctrl+Shift+Space (Mac: MacCtrl+Shift+Space)
+-   **Focus Search Bar**: Ctrl+Shift+Y (Mac: MacCtrl+Shift+Space)
+
+Users can customize these shortcuts under `chrome://extensions/` > Keyboard Shortcut in the sidebar.
+
+## Contributions
+
+Contributions to BookTab are welcome! Here are a few ways you can contribute:
+
+-   Fork the repository and submit a pull request.
+-   Open an issue to report bugs or suggest improvements.
+
+## Future Development
+
+Currently, BookTab does not have any tests. Future development may include adding tests and setting up a CI/CD workflow. Additionally, containerizing the application with Docker and deploying it could be explored.
 
 <!-- # React + TypeScript + Vite
 
