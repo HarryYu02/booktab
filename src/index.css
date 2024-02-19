@@ -70,6 +70,10 @@
     * {
         @apply border-border;
     }
+    html {
+        height: 600px;
+        width: 600px;
+    }
     body {
         @apply bg-background text-foreground;
     }

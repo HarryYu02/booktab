@@ -9,6 +9,10 @@ export default defineConfig({
     plugins: [react(), crx({ manifest })],
     server: {
         port: 3000,
+        strictPort: true,
+        hmr: {
+            clientPort: 3000,
+        },
     },
     resolve: {
         alias: {

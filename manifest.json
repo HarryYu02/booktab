@@ -7,5 +7,27 @@
         "default_popup": "index.html"
     },
     "host_permissions": ["http://*/*", "https://*/*"],
-    "permissions": ["tabGroups", "scripting", "bookmarks", "tabs"]
+    "permissions": [
+        "tabGroups",
+        "scripting",
+        "bookmarks",
+        "tabs",
+        "commands",
+        "activeTab"
+    ],
+    "commands": {
+        "_execute_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+Space",
+                "mac": "MacCtrl+Shift+Space"
+            }
+        },
+        "focus-search-bar": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+Y",
+                "mac": "MacCtrl+Shift+Y"
+            },
+            "description": "focus search bar"
+        }
+    }
 }
