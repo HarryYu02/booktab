@@ -2,6 +2,10 @@
 
 BookTab is a Chrome extension that allows users to quickly search and navigate through bookmarks, bookmark folders, and tabs using keyboard shortcuts.
 
+## Why use BookTab?
+
+When I was doing some coding, I have many documentation opened and also some nested in my bookmark bar deeply, I find it very annoying to open the desired bookmark or navigate to the tab, so I wrap the Chrome Extenstion API for bookmarks and tabs together. There are also some work around like pressing Ctrl+Shift+A to search tabs, or press F6 and type @bookmark or @tabs to perform a search, but I am too lazy for that many buttons or mouse clicks, so I spent 2 days to automate a task that would have took me 10 seconds instead.
+
 ## Technologies Used
 
 -   Chrome Extension Manifest V3 API
