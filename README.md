@@ -1,14 +1,14 @@
 # BookTab
 
-BookTab is a Chrome extension that allows users to quickly search and navigate through bookmarks, bookmark folders, and tabs using keyboard shortcuts.
+BookTab is a Chrome extension that allows users to quickly search and navigate through bookmarks, bookmark folders, and tabs using keyboard.
 
-## Why use BookTab?
+## Why creating BookTab
 
-When I was doing some coding, I have many documentation opened and also some nested in my bookmark bar deeply, I find it very annoying to open the desired bookmark or navigate to the tab, so I wrap the Chrome Extenstion API for bookmarks and tabs together. There are also some work around like pressing Ctrl+Shift+A to search tabs, or press F6 and type @bookmark or @tabs to perform a search, but I am too lazy for that many buttons or mouse clicks, so I spent 2 days to automate a task that would have took me 10 seconds instead.
+When I was doing some coding, I have many documentation opened and also some deeply nested bookmark, I find it very annoying to open the desired bookmark or navigate to a specific tab, so I wrap the Chrome Extenstion API for bookmarks and tabs together. There are also some work around like pressing Ctrl+Shift+A to search tabs, or press F6 and type @bookmark or @tabs to perform a search, but I am too lazy for that many buttons or mouse clicks, so I spent 2 days to automate a task that would have took me 10 seconds instead.
 
 ## Technologies Used
 
-- Chrome Extension Manifest V3 API
+- Chrome Extension Manifest V3
 - Vite (Build tool)
 - CRXJS/vite-plugin (Support for Chrome Extension API)
 - React
@@ -18,7 +18,7 @@ When I was doing some coding, I have many documentation opened and also some nes
 
 ## Installation and Usage
 
-To try out BookTab:
+To try out BookTab locally:
 
 1. Clone the project repository.
 2. Install all dependencies using `yarn install`.
@@ -33,9 +33,9 @@ To try out BookTab:
 BookTab supports the following keyboard shortcuts:
 
 - **Open Extension**: Ctrl+Shift+Space (Mac: MacCtrl+Shift+Space)
-- **Focus Search Bar**: Ctrl+Shift+Y (Mac: MacCtrl+Shift+Space)
+- **Focus Search Bar**: Ctrl+Shift+Z (Mac: MacCtrl+Shift+Z)
 
-Users can customize these shortcuts under `chrome://extensions/` > Keyboard Shortcut in the sidebar.
+I have customize it so I can use left hand only, but you can customize them in manifest,json, while users can customize these shortcuts under `chrome://extensions/` > Keyboard Shortcut in the sidebar.
 
 ## Contributions
 
@@ -46,7 +46,7 @@ Contributions to BookTab are welcome! Here are a few ways you can contribute:
 
 ## Future Development
 
-Currently, BookTab does not have any tests. Future development may include adding tests and setting up a CI/CD workflow. Additionally, containerizing the application with Docker and deploying it could be explored.
+Currently, BookTab does not have any tests. Future development may include adding tests and setting up a CI/CD workflow. Additionally, containerizing the application with Docker and deploying it to chrome extension store could be explored.
 
 <!-- # React + TypeScript + Vite
 
