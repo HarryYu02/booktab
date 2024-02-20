@@ -1,33 +1,33 @@
 {
-    "name": "BookTab",
-    "description": "An opensource chrome extension that allows users to quickly search and navigate through bookmarks, bookmark folders, and tabs with keyboards only.",
-    "version": "1.0",
-    "manifest_version": 3,
-    "action": {
-        "default_popup": "index.html"
+  "name": "BookTab",
+  "description": "An opensource chrome extension that allows users to quickly search and navigate through bookmarks, bookmark folders, and tabs with keyboards only.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html"
+  },
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "permissions": [
+    "tabGroups",
+    "scripting",
+    "bookmarks",
+    "tabs",
+    "commands",
+    "activeTab"
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Space",
+        "mac": "MacCtrl+Shift+Space"
+      }
     },
-    "host_permissions": ["http://*/*", "https://*/*"],
-    "permissions": [
-        "tabGroups",
-        "scripting",
-        "bookmarks",
-        "tabs",
-        "commands",
-        "activeTab"
-    ],
-    "commands": {
-        "_execute_action": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+Space",
-                "mac": "MacCtrl+Shift+Space"
-            }
-        },
-        "focus-search-bar": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+Z",
-                "mac": "MacCtrl+Shift+Z"
-            },
-            "description": "focus search bar"
-        }
+    "focus-search-bar": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Z",
+        "mac": "MacCtrl+Shift+Z"
+      },
+      "description": "focus search bar"
     }
+  }
 }

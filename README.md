@@ -8,13 +8,13 @@ When I was doing some coding, I have many documentation opened and also some nes
 
 ## Technologies Used
 
--   Chrome Extension Manifest V3 API
--   Vite (Build tool)
--   CRXJS/vite-plugin (Support for Chrome Extension API)
--   React
--   TypeScript
--   Tailwind CSS
--   ShadcnUI
+- Chrome Extension Manifest V3 API
+- Vite (Build tool)
+- CRXJS/vite-plugin (Support for Chrome Extension API)
+- React
+- TypeScript
+- Tailwind CSS
+- ShadcnUI
 
 ## Installation and Usage
 
@@ -32,8 +32,8 @@ To try out BookTab:
 
 BookTab supports the following keyboard shortcuts:
 
--   **Open Extension**: Ctrl+Shift+Space (Mac: MacCtrl+Shift+Space)
--   **Focus Search Bar**: Ctrl+Shift+Y (Mac: MacCtrl+Shift+Space)
+- **Open Extension**: Ctrl+Shift+Space (Mac: MacCtrl+Shift+Space)
+- **Focus Search Bar**: Ctrl+Shift+Y (Mac: MacCtrl+Shift+Space)
 
 Users can customize these shortcuts under `chrome://extensions/` > Keyboard Shortcut in the sidebar.
 
@@ -41,8 +41,8 @@ Users can customize these shortcuts under `chrome://extensions/` > Keyboard Shor
 
 Contributions to BookTab are welcome! Here are a few ways you can contribute:
 
--   Fork the repository and submit a pull request.
--   Open an issue to report bugs or suggest improvements.
+- Fork the repository and submit a pull request.
+- Open an issue to report bugs or suggest improvements.
 
 ## Future Development
 
