@@ -11,9 +11,9 @@ interface TabItem {
   item: chrome.tabs.Tab;
 }
 
-type ListItemProp = BookmarkItem | TabItem;
+type ListItemProps = BookmarkItem | TabItem;
 
-const ListItem = ({ type, item }: ListItemProp) => {
+const ListItem = ({ type, item }: ListItemProps) => {
   const onClickHandler = () => {
     type === "tab"
       ? chrome.tabs
@@ -29,13 +29,14 @@ const ListItem = ({ type, item }: ListItemProp) => {
   };
 
   return (
-    <li key={item.id}>
+    <li key={item.id} className="">
       <Button
-        className="bg-blue-400 w-full flex justify-between gap-2"
+        variant="outline"
+        className="w-full flex justify-between gap-2 focus-visible:ring-blue-500 focus-visible:ring-2"
         onClick={onClickHandler}
       >
-        <Badge className="">Tab</Badge>
-        <p className="text-ellipsis whitespace-nowrap overflow-hidden text-lg">
+        <Badge className="">{type === "tab" ? "Tab" : "Bookmark"}</Badge>
+        <p className="text-ellipsis whitespace-nowrap overflow-hidden text-lg text-primary">
           {item.title}
         </p>
       </Button>

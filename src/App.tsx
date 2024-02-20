@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Input } from "@/components/ui/input";
 import ListItem from "@/components/ui/ListItem";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 const strIncludeInsensitive = (target: string, str: string): boolean => {
   return str.toUpperCase().includes(target.toUpperCase());
@@ -88,36 +89,38 @@ const App = () => {
     <div className="w-full h-full flex flex-col min-w-0 min-h-0 p-4">
       <Input
         id="search_bar"
-        className="w-full h-[10%] text-lg"
+        className="w-full h-[10%] text-lg focus-visible:ring-2"
         onFocus={(e) => {
           e.target.select();
         }}
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
       />
-      <div className="w-full h-[85%] max-w-full flex flex-col mt-2 overflow-auto">
-        <ul className="flex flex-col gap-2 w-full p-2">
-          {tabData.map((tab) => {
-            return (
-              tab.title &&
-              tab.url &&
-              (strIncludeInsensitive(searchText, tab.title) ||
-                strIncludeInsensitive(searchText, tab.url)) && (
-                <ListItem type="tab" item={tab} />
-              )
-            );
-          })}
-          {bookmarkData.map((bookmark) => {
-            return (
-              bookmark.title &&
-              bookmark.url &&
-              (strIncludeInsensitive(searchText, bookmark.title) ||
-                strIncludeInsensitive(searchText, bookmark.url)) && (
-                <ListItem type="bookmark" item={bookmark} />
-              )
-            );
-          })}
-        </ul>
+      <div className="w-full h-[85%] max-w-full flex flex-col mt-2">
+        <ScrollArea className="h-full w-full">
+          <ul className="flex flex-col gap-2 w-full p-2">
+            {tabData.map((tab) => {
+              return (
+                tab.title &&
+                tab.url &&
+                (strIncludeInsensitive(searchText, tab.title) ||
+                  strIncludeInsensitive(searchText, tab.url)) && (
+                  <ListItem type="tab" item={tab} />
+                )
+              );
+            })}
+            {bookmarkData.map((bookmark) => {
+              return (
+                bookmark.title &&
+                bookmark.url &&
+                (strIncludeInsensitive(searchText, bookmark.title) ||
+                  strIncludeInsensitive(searchText, bookmark.url)) && (
+                  <ListItem type="bookmark" item={bookmark} />
+                )
+              );
+            })}
+          </ul>
+        </ScrollArea>
       </div>
     </div>
   );
