@@ -21,9 +21,11 @@ function App() {
         url: ["http://*/*", "https://*/*"],
         currentWindow: true,
       });
-      setTabData(tabs);
+      return tabs;
     };
-    fetchTabs();
+    fetchTabs()
+      .then((tabs) => setTabData(tabs))
+      .catch((error) => console.log(error));
 
     return () => setTabData([]);
   }, []);
@@ -51,9 +53,12 @@ function App() {
       };
       const allBookmarks = await chrome.bookmarks.getTree();
       const fetchedBookmarks = processBookmark(allBookmarks);
-      setBookmarkData(fetchedBookmarks);
+
+      return fetchedBookmarks;
     };
-    fetchBookmarks();
+    fetchBookmarks()
+      .then((bookmarks) => setBookmarkData(bookmarks))
+      .catch((error) => console.log(error));
 
     return () => setBookmarkData([]);
   }, []);
@@ -100,9 +105,11 @@ function App() {
                 <Button
                   className="bg-blue-400 w-full flex justify-between gap-2"
                   onClick={() => {
-                    chrome.tabs.highlight({
-                      tabs: tab.index,
-                    });
+                    chrome.tabs
+                      .highlight({
+                        tabs: tab.index,
+                      })
+                      .catch((error) => console.log(error));
                   }}
                 >
                   <Badge className="">Tab</Badge>
@@ -124,9 +131,11 @@ function App() {
                 <Button
                   className="bg-blue-400 w-full flex justify-between gap-2"
                   onClick={() => {
-                    chrome.tabs.create({
-                      url: bookmark.url,
-                    });
+                    chrome.tabs
+                      .create({
+                        url: bookmark.url,
+                      })
+                      .catch((error) => console.log(error));
                   }}
                 >
                   <Badge>Bookmark</Badge>
