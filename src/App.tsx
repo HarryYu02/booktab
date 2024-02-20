@@ -89,7 +89,7 @@ const App = () => {
     <div className="w-full h-full flex flex-col min-w-0 min-h-0 p-4">
       <Input
         id="search_bar"
-        className="w-full h-[10%] text-lg focus-visible:ring-2"
+        className="w-full h-[10%] text-lg focus-visible:ring-2 ring-1 ring-primary"
         onFocus={(e) => {
           e.target.select();
         }}
