@@ -8,13 +8,13 @@ When I was doing some coding, I have many documentation opened and also some dee
 
 ## Technologies Used
 
-- Chrome Extension Manifest V3
-- Vite (Build tool)
-- CRXJS/vite-plugin (Support for Chrome Extension API)
-- React
-- TypeScript
-- Tailwind CSS
-- ShadcnUI
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/) (Build tool)
+- [Chrome Extension Manifest V3](https://developer.chrome.com/docs/extensions)
+- [CRXJS/vite-plugin](https://crxjs.dev/vite-plugin) (Support for Chrome Extension API)
+- [TailwindCSS](https://tailwindcss.com/)
+- [ShadcnUI](https://ui.shadcn.com/)
 
 ## Installation and Usage
 
