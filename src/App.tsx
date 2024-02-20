@@ -3,11 +3,8 @@ import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import ListItem from "@/components/ui/ListItem";
 
-const strIncludeInsensitive = (
-  target: string,
-  str: string | undefined
-): boolean => {
-  return str ? str.toUpperCase().includes(target.toUpperCase()) : false;
+const strIncludeInsensitive = (target: string, str: string): boolean => {
+  return str.toUpperCase().includes(target.toUpperCase());
 };
 
 const App = () => {
@@ -102,18 +99,20 @@ const App = () => {
         <ul className="flex flex-col gap-2 w-full p-2">
           {tabData.map((tab) => {
             return (
-              (tab &&
-                (strIncludeInsensitive(searchText, tab.title) ||
-                  strIncludeInsensitive(searchText, tab.url))) ?? (
+              tab.title &&
+              tab.url &&
+              (strIncludeInsensitive(searchText, tab.title) ||
+                strIncludeInsensitive(searchText, tab.url)) && (
                 <ListItem type="tab" item={tab} />
               )
             );
           })}
           {bookmarkData.map((bookmark) => {
             return (
-              (bookmark &&
-                (strIncludeInsensitive(searchText, bookmark.title) ||
-                  strIncludeInsensitive(searchText, bookmark.url))) ?? (
+              bookmark.title &&
+              bookmark.url &&
+              (strIncludeInsensitive(searchText, bookmark.title) ||
+                strIncludeInsensitive(searchText, bookmark.url)) && (
                 <ListItem type="bookmark" item={bookmark} />
               )
             );
