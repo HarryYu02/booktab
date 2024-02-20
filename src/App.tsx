@@ -4,6 +4,7 @@ import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollBar } from "./components/ui/scroll-bar";
 
 function App() {
     const [tabData, setTabData] = useState<chrome.tabs.Tab[]>([]);
@@ -11,6 +12,7 @@ function App() {
         chrome.bookmarks.BookmarkTreeNode[]
     >([]);
     const [searchText, setSearchText] = useState<string>("");
+    const [option, setOption] = useState<string>("");
 
     useEffect(() => {
         // Fetch tabs
@@ -82,16 +84,18 @@ function App() {
     }, []);
 
     return (
-        <div className="w-screen h-screen scroll-smooth overflow-auto flex flex-col m-0">
+        <div className="w-full h-full scroll-smooth overflow-auto flex flex-col min-w-0 min-h-0 p-4">
             <Input
                 id="search_bar"
-                className="w-full m-0"
-                onFocus={(e) => e.target.select()}
+                className="w-full h-[10%] text-[18px]"
+                onFocus={(e) => {
+                    e.target.select();
+                }}
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
             />
-            <ScrollArea className="rounded-md border m-0">
-                <ul className="flex flex-col gap-2">
+            <div className="w-full h-[85%] whitespace-wrap max-w-full flex flex-col mt-2">
+                <ul className="flex flex-col gap-2 w-full">
                     {tabData.map((tab) => {
                         return tab.title
                             ?.toUpperCase()
@@ -99,29 +103,25 @@ function App() {
                             tab.url
                                 ?.toUpperCase()
                                 .includes(searchText.toUpperCase()) ? (
-                            <li
-                                className="px-5 justify-between flex items-center"
-                                key={tab.id}
-                            >
-                                <Badge>Tab</Badge>
-                                <p className="max-w-[75%]">{tab.title}</p>
+                            <li key={tab.id}>
                                 <Button
-                                    className="bg-blue-500"
+                                    className="bg-blue-400 w-full flex justify-between gap-2"
                                     onClick={() => {
                                         chrome.tabs.highlight({
                                             tabs: tab.index,
                                         });
                                     }}
                                 >
-                                    go
+                                    <Badge className="">Tab</Badge>
+                                    <p className="text-ellipsis whitespace-nowrap overflow-hidden">
+                                        {tab.title}
+                                    </p>
                                 </Button>
                             </li>
                         ) : (
                             <></>
                         );
                     })}
-                </ul>
-                <ul className="flex flex-col gap-2 mt-2">
                     {bookmarkData.map((bookmark) => {
                         return bookmark.title
                             ?.toUpperCase()
@@ -129,21 +129,19 @@ function App() {
                             bookmark.url
                                 ?.toUpperCase()
                                 .includes(searchText.toUpperCase()) ? (
-                            <li
-                                className="px-5 justify-between flex items-center"
-                                key={bookmark.id}
-                            >
-                                <Badge>Bookmark</Badge>
-                                <p className="max-w-[75%]">{bookmark.title}</p>
+                            <li key={bookmark.id}>
                                 <Button
-                                    className="bg-blue-500"
+                                    className="bg-blue-400 w-full flex justify-between gap-2"
                                     onClick={() => {
                                         chrome.tabs.create({
                                             url: bookmark.url,
                                         });
                                     }}
                                 >
-                                    go
+                                    <Badge>Bookmark</Badge>
+                                    <p className="text-ellipsis whitespace-nowrap overflow-hidden">
+                                        {bookmark.title}
+                                    </p>
                                 </Button>
                             </li>
                         ) : (
@@ -151,7 +149,7 @@ function App() {
                         );
                     })}
                 </ul>
-            </ScrollArea>
+            </div>
         </div>
     );
 }

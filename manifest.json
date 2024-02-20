@@ -24,8 +24,8 @@
         },
         "focus-search-bar": {
             "suggested_key": {
-                "default": "Ctrl+Shift+Y",
-                "mac": "MacCtrl+Shift+Y"
+                "default": "Ctrl+Shift+Z",
+                "mac": "MacCtrl+Shift+Z"
             },
             "description": "focus search bar"
         }
