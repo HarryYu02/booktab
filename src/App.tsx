@@ -100,6 +100,7 @@ const App = () => {
                 }}
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
+                tabIndex={1}
             />
             <div className="w-full h-[85%] max-w-full flex flex-col mt-2">
                 <ScrollArea className="h-full w-full">

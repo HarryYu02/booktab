@@ -32,8 +32,9 @@ const ListItem = ({ type, item }: ListItemProps) => {
         <li key={item.id} className="">
             <Button
                 variant="outline"
-                className="w-full flex justify-between gap-2 focus-visible:ring-blue-500 focus-visible:ring-2"
+                className="w-full flex justify-between gap-2 focus-visible:bg-accent focus-visible:text-accent-foreground focus-visible:ring-0 focus-visible:border-l-4 focus-visible:border-l-blue-500 transition ease-in-out duration-75"
                 onClick={onClickHandler}
+                tabIndex={0}
             >
                 <Badge className="">
                     {type === "tab" ? "Tab" : "Bookmark"}
