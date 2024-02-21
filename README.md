@@ -8,13 +8,13 @@ When I was doing some coding, I have many documentation opened and also some dee
 
 ## Technologies Used
 
-- [React](https://react.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Vite](https://vitejs.dev/) (Build tool)
-- [Chrome Extension Manifest V3](https://developer.chrome.com/docs/extensions)
-- [CRXJS/vite-plugin](https://crxjs.dev/vite-plugin) (Support for Chrome Extension API)
-- [TailwindCSS](https://tailwindcss.com/)
-- [ShadcnUI](https://ui.shadcn.com/)
+-   [React](https://react.dev/)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [Vite](https://vitejs.dev/) (Build tool)
+-   [Chrome Extension Manifest V3](https://developer.chrome.com/docs/extensions)
+-   [CRXJS/vite-plugin](https://crxjs.dev/vite-plugin) (Support for Chrome Extension API)
+-   [TailwindCSS](https://tailwindcss.com/)
+-   [ShadcnUI](https://ui.shadcn.com/)
 
 ## Installation and Usage
 
@@ -32,8 +32,8 @@ To try out BookTab locally:
 
 BookTab supports the following keyboard shortcuts:
 
-- **Open Extension**: Ctrl+Shift+Space (Mac: MacCtrl+Shift+Space)
-- **Focus Search Bar**: Ctrl+Shift+Z (Mac: MacCtrl+Shift+Z)
+-   **Open Extension**: Ctrl+Shift+Space (Mac: MacCtrl+Shift+Space)
+-   **Focus Search Bar**: Ctrl+Shift+Z (Mac: MacCtrl+Shift+Z)
 
 I have customize it so I can use left hand only, but you can customize them in manifest,json, while users can customize these shortcuts under `chrome://extensions/` > Keyboard Shortcut in the sidebar.
 
@@ -41,8 +41,8 @@ I have customize it so I can use left hand only, but you can customize them in m
 
 Contributions to BookTab are welcome! Here are a few ways you can contribute:
 
-- Fork the repository and submit a pull request.
-- Open an issue to report bugs or suggest improvements.
+-   Fork the repository and submit a pull request.
+-   Open an issue to report bugs or suggest improvements.
 
 ## Future Development
 
