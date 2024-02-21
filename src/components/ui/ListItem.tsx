@@ -32,16 +32,21 @@ const ListItem = ({ type, item }: ListItemProps) => {
         <li key={item.id} className="">
             <Button
                 variant="outline"
-                className="w-full flex justify-between gap-2 focus-visible:bg-accent focus-visible:text-accent-foreground focus-visible:ring-0 focus-visible:border-l-4 focus-visible:border-l-blue-500 transition ease-in-out duration-75"
+                className="w-full flex justify-between gap-2 focus-visible:bg-accent focus-visible:text-accent-foreground focus-visible:ring-0 focus-visible:border-l-4 focus-visible:border-l-blue-500 transition ease-in-out duration-75 h-auto"
                 onClick={onClickHandler}
                 tabIndex={0}
             >
                 <Badge className="">
                     {type === "tab" ? "Tab" : "Bookmark"}
                 </Badge>
-                <p className="text-ellipsis whitespace-nowrap overflow-hidden text-lg text-primary">
-                    {item.title}
-                </p>
+                <div className="w-3/4 text-end">
+                    <p className="text-ellipsis whitespace-nowrap overflow-hidden text-lg text-primary">
+                        {item.title}
+                    </p>
+                    <p className="text-ellipsis whitespace-nowrap overflow-hidden text-xs text-muted-foreground">
+                        {item.url}
+                    </p>
+                </div>
             </Button>
         </li>
     );
