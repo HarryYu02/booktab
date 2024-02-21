@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 import { Input } from "@/components/ui/input";
 import ListItem from "@/components/ui/ListItem";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 const strIncludeInsensitive = (target: string, str: string): boolean => {
     return str.toUpperCase().includes(target.toUpperCase());
@@ -104,7 +103,7 @@ const App = () => {
                     tabIndex={1}
                 />
             </div>
-            <ul className="h-full w-full overflow-auto scroll-smooth snap-y">
+            <ul className="h-full w-full snap-y overflow-auto scroll-smooth">
                 {tabData.map((tab) => {
                     return (
                         tab.title &&

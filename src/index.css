@@ -68,20 +68,44 @@
 
 @layer base {
     * {
-        min-width: 0;
-        min-height: 0;
         @apply border-border;
-    }
-    html,
-    body,
-    #root {
-        height: 600px;
-        width: 600px;
-        margin: 0;
-        padding: 0;
-        /* overflow: hidden; */
     }
     body {
         @apply bg-background text-foreground;
     }
+}
+
+* {
+    min-width: 0;
+    min-height: 0;
+}
+
+html,
+body,
+#root {
+    height: 600px;
+    width: 600px;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    /* overflow: hidden; */
+}
+
+::-webkit-scrollbar {
+    width: 0.625rem;
+    height: 100%;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
