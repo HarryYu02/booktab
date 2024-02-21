@@ -68,11 +68,18 @@
 
 @layer base {
     * {
+        min-width: 0;
+        min-height: 0;
         @apply border-border;
     }
-    html {
+    html,
+    body,
+    #root {
         height: 600px;
         width: 600px;
+        margin: 0;
+        padding: 0;
+        /* overflow: hidden; */
     }
     body {
         @apply bg-background text-foreground;

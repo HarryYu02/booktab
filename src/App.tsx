@@ -91,11 +91,11 @@ const App = () => {
     }, []);
 
     return (
-        <div className="w-full h-full flex flex-col min-w-0 min-h-0">
-            <div className="p-4 sticky z-10 top-0 bg-background">
+        <div className="flex h-full w-full min-w-0 flex-col justify-between">
+            <div className="h-auto bg-background p-4">
                 <Input
                     id="search_bar"
-                    className="w-full h-[10%] text-lg focus-visible:ring-2 ring-1 ring-primary"
+                    className="h-auto w-full text-lg ring-1 ring-primary focus-visible:ring-2"
                     onFocus={(e) => {
                         e.target.select();
                     }}
@@ -104,39 +104,35 @@ const App = () => {
                     tabIndex={1}
                 />
             </div>
-            <div className="w-full h-[85%] max-w-full flex flex-col p-4">
-                <ScrollArea className="h-full w-full">
-                    <ul className="flex flex-col gap-2 w-full">
-                        {tabData.map((tab) => {
-                            return (
-                                tab.title &&
-                                tab.url &&
-                                (strIncludeInsensitive(searchText, tab.title) ||
-                                    strIncludeInsensitive(
-                                        searchText,
-                                        tab.url
-                                    )) && <ListItem type="tab" item={tab} />
-                            );
-                        })}
-                        {bookmarkData.map((bookmark) => {
-                            return (
-                                bookmark.title &&
-                                bookmark.url &&
-                                (strIncludeInsensitive(
-                                    searchText,
-                                    bookmark.title
-                                ) ||
-                                    strIncludeInsensitive(
-                                        searchText,
-                                        bookmark.url
-                                    )) && (
-                                    <ListItem type="bookmark" item={bookmark} />
-                                )
-                            );
-                        })}
-                    </ul>
-                </ScrollArea>
-            </div>
+            <ul className="h-full w-full overflow-auto scroll-smooth snap-y">
+                {tabData.map((tab) => {
+                    return (
+                        tab.title &&
+                        tab.url &&
+                        (strIncludeInsensitive(searchText, tab.title) ||
+                            strIncludeInsensitive(searchText, tab.url)) && (
+                            <ListItem key={tab.id} type="tab" item={tab} />
+                        )
+                    );
+                })}
+                {bookmarkData.map((bookmark) => {
+                    return (
+                        bookmark.title &&
+                        bookmark.url &&
+                        (strIncludeInsensitive(searchText, bookmark.title) ||
+                            strIncludeInsensitive(
+                                searchText,
+                                bookmark.url
+                            )) && (
+                            <ListItem
+                                key={bookmark.id}
+                                type="bookmark"
+                                item={bookmark}
+                            />
+                        )
+                    );
+                })}
+            </ul>
         </div>
     );
 };

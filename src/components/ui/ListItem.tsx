@@ -29,10 +29,10 @@ const ListItem = ({ type, item }: ListItemProps) => {
     };
 
     return (
-        <li key={item.id} className="">
+        <li className="snap-end">
             <Button
                 variant="outline"
-                className="w-full flex justify-between gap-2 focus-visible:bg-accent focus-visible:text-accent-foreground focus-visible:ring-0 focus-visible:border-l-4 focus-visible:border-l-blue-500 transition ease-in-out duration-75 h-auto"
+                className="flex h-full w-full justify-between gap-2 transition duration-75 ease-in-out focus-visible:border-l-4 focus-visible:border-l-blue-500 focus-visible:bg-accent focus-visible:text-accent-foreground focus-visible:ring-0"
                 onClick={onClickHandler}
                 tabIndex={0}
             >
@@ -40,10 +40,10 @@ const ListItem = ({ type, item }: ListItemProps) => {
                     {type === "tab" ? "Tab" : "Bookmark"}
                 </Badge>
                 <div className="w-3/4 text-end">
-                    <p className="text-ellipsis whitespace-nowrap overflow-hidden text-lg text-primary">
+                    <p className="overflow-hidden text-ellipsis whitespace-nowrap text-lg text-primary">
                         {item.title}
                     </p>
-                    <p className="text-ellipsis whitespace-nowrap overflow-hidden text-xs text-muted-foreground">
+                    <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xs text-muted-foreground">
                         {item.url}
                     </p>
                 </div>
