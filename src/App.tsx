@@ -94,16 +94,17 @@ const App = () => {
             <div className="h-auto bg-background p-4">
                 <Input
                     id="search_bar"
-                    className="h-auto w-full text-lg ring-1 ring-primary focus-visible:ring-2"
+                    className="h-auto w-full select-all text-lg ring-1 ring-primary selection:bg-gray-400 selection:text-white focus-visible:ring-2"
                     onFocus={(e) => {
                         e.target.select();
                     }}
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
                     tabIndex={1}
+                    placeholder="Start typing..."
                 />
             </div>
-            <ul className="h-full w-full snap-y overflow-auto scroll-smooth">
+            <ul className="h-full w-full snap-y snap-mandatory snap-always overflow-auto scroll-smooth">
                 {tabData.map((tab) => {
                     return (
                         tab.title &&
