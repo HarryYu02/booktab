@@ -1,6 +1,6 @@
 {
     "name": "BookTab",
-    "description": "An opensource chrome extension that allows users to quickly search and navigate through bookmarks, bookmark folders, and tabs with keyboards only.",
+    "description": "Quickly search and navigate through bookmarks, bookmark folders, and tabs with one hand.",
     "version": "1.0",
     "manifest_version": 3,
     "action": {
