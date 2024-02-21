@@ -34,8 +34,9 @@ BookTab supports the following keyboard shortcuts:
 
 -   **Open Extension**: Ctrl+Shift+Space (Mac: MacCtrl+Shift+Space)
 -   **Focus Search Bar**: Ctrl+Shift+Z (Mac: MacCtrl+Shift+Z)
--   **Select Next Option**: Tab
--   **Select Previous Option**: Shift+Tab
+-   **Move to Next Option**: Tab
+-   **Move to Previous Option**: Shift+Tab
+-   **Select Current Option**: Space / Enter
 
 I have customize it so I can use left hand only, but you can customize them in manifest,json, while users can customize these shortcuts under `chrome://extensions/` > Keyboard Shortcut in the sidebar.
 

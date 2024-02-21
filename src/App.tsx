@@ -91,20 +91,22 @@ const App = () => {
     }, []);
 
     return (
-        <div className="w-full h-full flex flex-col min-w-0 min-h-0 p-4">
-            <Input
-                id="search_bar"
-                className="w-full h-[10%] text-lg focus-visible:ring-2 ring-1 ring-primary"
-                onFocus={(e) => {
-                    e.target.select();
-                }}
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                tabIndex={1}
-            />
-            <div className="w-full h-[85%] max-w-full flex flex-col mt-2">
+        <div className="w-full h-full flex flex-col min-w-0 min-h-0">
+            <div className="p-4 sticky z-10 top-0 bg-background">
+                <Input
+                    id="search_bar"
+                    className="w-full h-[10%] text-lg focus-visible:ring-2 ring-1 ring-primary"
+                    onFocus={(e) => {
+                        e.target.select();
+                    }}
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    tabIndex={1}
+                />
+            </div>
+            <div className="w-full h-[85%] max-w-full flex flex-col p-4">
                 <ScrollArea className="h-full w-full">
-                    <ul className="flex flex-col gap-2 w-full p-2">
+                    <ul className="flex flex-col gap-2 w-full">
                         {tabData.map((tab) => {
                             return (
                                 tab.title &&
