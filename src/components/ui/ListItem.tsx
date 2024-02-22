@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 interface BookmarkItem {
     type: "bookmark";
@@ -36,7 +37,12 @@ const ListItem = ({ type, item }: ListItemProps) => {
                 onClick={onClickHandler}
                 tabIndex={0}
             >
-                <Badge className="">
+                <Badge
+                    className={cn(
+                        "bg-teal-600",
+                        type === "bookmark" && "bg-cyan-700"
+                    )}
+                >
                     {type === "tab" ? "Tab" : "Bookmark"}
                 </Badge>
                 <div className="w-3/4 text-end">
