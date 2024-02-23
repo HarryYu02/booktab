@@ -22,15 +22,95 @@ My usecase for BookTab is to run it using a Powershell Script to run it, save al
 
 ## Installation and Usage
 
+Before running this project locally, ensure you have the following installed on your system:
+
+-   [Node.js](https://nodejs.org/) (v14.x or later)
+-   [Yarn](https://yarnpkg.com/) (you can use npm but I use yarn for this project)
+-   [Git](https://git-scm.com/)
+
 To try out BookTab locally:
 
 1. Clone the project repository.
-2. Install all dependencies using `yarn install`.
-3. Run the project locally using `yarn dev`.
-4. Go to `chrome://extensions/`.
-5. Enable Developer Mode.
-6. Click "Load unpacked" and select the `dist` folder in the project directory.
-7. Start using BookTab.
+
+```bash
+git clone https://github.com/HarryYu02/booktab.git
+```
+
+2. Navigate to the project directory.
+
+```bash
+cd booktab
+```
+
+3. Install all dependencies.
+
+```bash
+yarn install
+```
+
+or if you prefer npm
+
+```bash
+npm install
+```
+
+4. Run the project locally in development mode.
+
+```bash
+yarn dev
+```
+
+or
+
+```bash
+npm run dev
+```
+
+5. Go to `chrome://extensions/` on Google Chrome.
+6. Enable Developer Mode in the top right corner.
+7. Click "Load unpacked" and select the `dist` folder in the project directory.
+8. Start using BookTab.
+
+## Update
+
+To keep up with the latest updates and changes to BookTab, you can follow these steps:
+
+1. Pull the latest changes from the remote repository:
+
+```bash
+git pull origin main
+
+```
+
+Replace main with the name of your main branch if it's different.
+
+2. If there are any new dependencies added, install them using:
+
+```bash
+yarn install
+```
+
+or npm:
+
+```bash
+npm install
+```
+
+3. Restart the development server if necessary:
+
+First press Ctrl+C in terminal to terminate the development server, then run
+
+```bash
+yarn dev
+```
+
+or
+
+```bash
+npm run dev
+```
+
+That's it! Your BookTab extension should now be updated with the latest changes.
 
 ## Keyboard Shortcuts
 
