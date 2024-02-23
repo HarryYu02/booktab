@@ -148,7 +148,16 @@ const App = () => {
                                     .update({
                                         url: `https://www.google.com/search?q=${searchText.split(" ").join("+")}`,
                                     })
-                                    .catch((error) => console.log(error));
+                                    .catch((error) => {
+                                        console.log(error);
+                                        chrome.tabs
+                                            .create({
+                                                url: `https://www.google.com/search?q=${searchText.split(" ").join("+")}`,
+                                            })
+                                            .catch((newTabError) =>
+                                                console.log(newTabError)
+                                            );
+                                    });
                         },
                     }}
                 />
