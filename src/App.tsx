@@ -7,6 +7,17 @@ const strIncludeInsensitive = (target: string, str: string): boolean => {
     return str.toUpperCase().includes(target.toUpperCase());
 };
 
+// const ScrollToTop = () => {
+//     useEffect(() => {
+//         document
+//             .getElementById("list")
+//             ?.scroll({ top: 0, left: 0, behavior: "instant" });
+
+//         return () => {};
+//     }, []);
+//     return <></>;
+// };
+
 const App = () => {
     const [tabData, setTabData] = useState<chrome.tabs.Tab[]>([]);
     const [bookmarkData, setBookmarkData] = useState<
@@ -95,7 +106,7 @@ const App = () => {
         return () => window.removeEventListener("keydown", keydownListener);
     }, []);
 
-    // Auto-focus on the search bar
+    // Auto-focus on the search bar and scroll to top
     useEffect(() => {
         const autofocus = setTimeout(() => {
             (
@@ -123,7 +134,7 @@ const App = () => {
             </div>
             <ul
                 id="list"
-                className="h-full w-full snap-y snap-mandatory snap-always overflow-y-auto scroll-smooth"
+                className="h-full w-full snap-y snap-mandatory snap-always overflow-y-auto scroll-smooth [overflow-anchor:none]"
             >
                 {/* Search */}
                 <ListItem
@@ -132,11 +143,12 @@ const App = () => {
                         name: `Search ${searchText}`,
                         description: "Search in Google Chrome",
                         func: () => {
-                            chrome.tabs
-                                .update({
-                                    url: `https://www.google.com/search?q=${searchText.split(" ").join("+")}`,
-                                })
-                                .catch((error) => console.log(error));
+                            if (searchText !== "")
+                                chrome.tabs
+                                    .update({
+                                        url: `https://www.google.com/search?q=${searchText.split(" ").join("+")}`,
+                                    })
+                                    .catch((error) => console.log(error));
                         },
                     }}
                 />
