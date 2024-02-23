@@ -13,7 +13,7 @@ const App = () => {
         chrome.bookmarks.BookmarkTreeNode[]
     >([]);
     const [searchText, setSearchText] = useState<string>("");
-    // const [option, setOption] = useState<string>("");
+    // const [selected, setSelected] = useState<string>("");
 
     // Fetch tabs
     useEffect(() => {
@@ -78,6 +78,23 @@ const App = () => {
         return () => chrome.commands.onCommand.removeListener(commandListener);
     }, []);
 
+    // Set up keydown listener
+    useEffect(() => {
+        const keydownListener = (e: KeyboardEvent) => {
+            switch (e.key) {
+                case "ArrowUp":
+                    // Up pressed
+                    break;
+                case "ArrowDown":
+                    // Down pressed
+                    break;
+            }
+        };
+        window.addEventListener("keydown", keydownListener);
+
+        return () => window.removeEventListener("keydown", keydownListener);
+    }, []);
+
     // Auto-focus on the search bar
     useEffect(() => {
         const autofocus = setTimeout(() => {
@@ -100,14 +117,29 @@ const App = () => {
                     }}
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
-                    tabIndex={1}
+                    tabIndex={Infinity}
                     placeholder="Start typing..."
                 />
             </div>
             <ul
                 id="list"
-                className="h-full w-full snap-y snap-mandatory snap-always overflow-auto scroll-smooth"
+                className="h-full w-full snap-y snap-mandatory snap-always overflow-y-auto scroll-smooth"
             >
+                {/* Search */}
+                <ListItem
+                    type="custom"
+                    item={{
+                        name: `Search ${searchText}`,
+                        description: "Search in Google Chrome",
+                        func: () => {
+                            chrome.tabs
+                                .update({
+                                    url: `https://www.google.com/search?q=${searchText.split(" ").join("+")}`,
+                                })
+                                .catch((error) => console.log(error));
+                        },
+                    }}
+                />
                 {/* all opened tabs */}
                 {tabData.map((tab) => {
                     return (
@@ -139,20 +171,6 @@ const App = () => {
                         )
                     );
                 })}
-                <ListItem
-                    type="custom"
-                    item={{
-                        name: `Search ${searchText}`,
-                        description: "Search in Google Chrome",
-                        func: () => {
-                            chrome.tabs
-                                .update({
-                                    url: `https://www.google.com/search?q=${searchText.split(" ").join("+")}`,
-                                })
-                                .catch((error) => console.log(error));
-                        },
-                    }}
-                />
             </ul>
         </div>
     );
