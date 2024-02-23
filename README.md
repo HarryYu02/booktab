@@ -24,7 +24,7 @@ My usecase for BookTab is to run it using a Powershell Script to run it, save al
 
 Before running this project locally, ensure you have the following installed on your system:
 
--   [Node.js](https://nodejs.org/) (v14.x or later)
+-   [Node.js](https://nodejs.org/) (v20.x or later)
 -   [Yarn](https://yarnpkg.com/) (you can use npm but I use yarn for this project)
 -   [Git](https://git-scm.com/)
 
@@ -48,7 +48,7 @@ cd booktab
 yarn install
 ```
 
-or if you prefer npm
+    or if you prefer npm
 
 ```bash
 npm install
@@ -60,7 +60,7 @@ npm install
 yarn dev
 ```
 
-or
+    or
 
 ```bash
 npm run dev
@@ -90,7 +90,7 @@ Replace main with the name of your main branch if it's different.
 yarn install
 ```
 
-or npm:
+    or npm:
 
 ```bash
 npm install
@@ -104,7 +104,7 @@ First press Ctrl+C in terminal to terminate the development server, then run
 yarn dev
 ```
 
-or
+    or
 
 ```bash
 npm run dev
