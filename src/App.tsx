@@ -104,9 +104,14 @@ const App = () => {
                     placeholder="Start typing..."
                 />
             </div>
-            <ul className="h-full w-full snap-y snap-mandatory snap-always overflow-auto scroll-smooth">
+            <ul
+                id="list"
+                className="h-full w-full snap-y snap-mandatory snap-always overflow-auto scroll-smooth"
+            >
+                {/* all opened tabs */}
                 {tabData.map((tab) => {
                     return (
+                        searchText !== "" &&
                         tab.title &&
                         tab.url &&
                         (strIncludeInsensitive(searchText, tab.title) ||
@@ -115,8 +120,10 @@ const App = () => {
                         )
                     );
                 })}
+                {/* all saved bookmarks */}
                 {bookmarkData.map((bookmark) => {
                     return (
+                        searchText !== "" &&
                         bookmark.title &&
                         bookmark.url &&
                         (strIncludeInsensitive(searchText, bookmark.title) ||
@@ -132,6 +139,20 @@ const App = () => {
                         )
                     );
                 })}
+                <ListItem
+                    type="custom"
+                    item={{
+                        name: `Search ${searchText}`,
+                        description: "Search in Google Chrome",
+                        func: () => {
+                            chrome.tabs
+                                .update({
+                                    url: `https://www.google.com/search?q=${searchText.split(" ").join("+")}`,
+                                })
+                                .catch((error) => console.log(error));
+                        },
+                    }}
+                />
             </ul>
         </div>
     );

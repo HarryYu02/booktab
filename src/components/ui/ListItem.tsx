@@ -12,21 +12,43 @@ interface TabItem {
     item: chrome.tabs.Tab;
 }
 
-type ListItemProps = BookmarkItem | TabItem;
+interface CustomItem {
+    type: "custom";
+    item: {
+        name: string;
+        description: string;
+        func: () => void;
+    };
+}
+
+type ListItemProps = BookmarkItem | TabItem | CustomItem;
 
 const ListItem = ({ type, item }: ListItemProps) => {
     const onClickHandler = () => {
-        type === "tab"
-            ? chrome.tabs
-                  .highlight({
-                      tabs: item.index,
-                  })
-                  .catch((error) => console.log(error))
-            : chrome.tabs
-                  .create({
-                      url: item.url,
-                  })
-                  .catch((error) => console.log(error));
+        switch (type) {
+            case "tab":
+                chrome.tabs
+                    .highlight({
+                        tabs: item.index,
+                    })
+                    .catch((error) => console.log(error));
+                break;
+
+            case "bookmark":
+                chrome.tabs
+                    .create({
+                        url: item.url,
+                    })
+                    .catch((error) => console.log(error));
+                break;
+
+            case "custom":
+                item.func();
+                break;
+
+            default:
+                break;
+        }
     };
 
     return (
@@ -39,18 +61,20 @@ const ListItem = ({ type, item }: ListItemProps) => {
             >
                 <Badge
                     className={cn(
-                        "bg-teal-600",
-                        type === "bookmark" && "bg-cyan-700"
+                        type === "tab" && "bg-teal-600",
+                        type === "bookmark" && "bg-cyan-700",
+                        type === "custom" && "bg-amber-600"
                     )}
                 >
-                    {type === "tab" ? "Tab" : "Bookmark"}
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
                 </Badge>
                 <div className="w-3/4 text-end">
                     <p className="overflow-hidden text-ellipsis whitespace-nowrap text-lg text-primary">
-                        {item.title}
+                        {type === "custom" ? item.name : item.title}
                     </p>
+
                     <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xs text-muted-foreground">
-                        {item.url}
+                        {type === "custom" ? item.description : item.url}
                     </p>
                 </div>
             </Button>
