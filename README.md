@@ -78,11 +78,9 @@ To keep up with the latest updates and changes to BookTab, you can follow these 
 1. Pull the latest changes from the remote repository:
 
 ```bash
-git pull origin main
+git pull https://github.com/HarryYu02/booktab.git main
 
 ```
-
-Replace main with the name of your main branch if it's different.
 
 2. If there are any new dependencies added, install them using:
 
