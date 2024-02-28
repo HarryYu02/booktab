@@ -36,10 +36,17 @@ const ListItem = ({ type, item }: ListItemProps) => {
 
             case "bookmark":
                 chrome.tabs
-                    .create({
+                    .update({
                         url: item.url,
                     })
-                    .catch((error) => console.log(error));
+                    .catch((error) => {
+                        console.log(error);
+                        chrome.tabs
+                            .create({
+                                url: item.url,
+                            })
+                            .catch((newTabError) => console.log(newTabError));
+                    });
                 break;
 
             case "custom":

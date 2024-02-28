@@ -106,7 +106,7 @@ const App = () => {
         return () => window.removeEventListener("keydown", keydownListener);
     }, []);
 
-    // Auto-focus on the search bar and scroll to top
+    // Auto-focus on the search bar
     useEffect(() => {
         const autofocus = setTimeout(() => {
             (
@@ -144,19 +144,10 @@ const App = () => {
                         description: "Search in Google Chrome",
                         func: () => {
                             if (searchText !== "")
-                                chrome.tabs
-                                    .update({
-                                        url: `https://www.google.com/search?q=${searchText.split(" ").join("+")}`,
-                                    })
+                                chrome.search
+                                    .query({ text: searchText })
                                     .catch((error) => {
                                         console.log(error);
-                                        chrome.tabs
-                                            .create({
-                                                url: `https://www.google.com/search?q=${searchText.split(" ").join("+")}`,
-                                            })
-                                            .catch((newTabError) =>
-                                                console.log(newTabError)
-                                            );
                                     });
                         },
                     }}

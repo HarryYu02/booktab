@@ -13,7 +13,8 @@
         "bookmarks",
         "tabs",
         "commands",
-        "activeTab"
+        "activeTab",
+        "search"
     ],
     "commands": {
         "_execute_action": {

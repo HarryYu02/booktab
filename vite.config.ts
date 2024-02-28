@@ -8,10 +8,11 @@ import path from "path";
 export default defineConfig({
     plugins: [react(), crx({ manifest })],
     server: {
-        port: 3000,
+        host: "127.0.0.1",
+        port: 8080,
         strictPort: true,
         hmr: {
-            clientPort: 3000,
+            clientPort: 8080,
         },
     },
     resolve: {
