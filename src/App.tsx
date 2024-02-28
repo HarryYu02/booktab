@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { Input } from "@/components/ui/input";
-import ListItem from "@/components/ui/ListItem";
+import ListItem from "@/components/ListItem";
+import SearchListItem from "./components/SearchListItem";
 
 const strIncludeInsensitive = (target: string, str: string): boolean => {
     return str.toUpperCase().includes(target.toUpperCase());
@@ -134,24 +135,8 @@ const App = () => {
             </div>
             <ul
                 id="list"
-                className="h-full w-full snap-y snap-mandatory snap-always overflow-y-auto scroll-smooth [overflow-anchor:none]"
+                className="h-full w-full snap-y snap-mandatory snap-always overflow-y-auto scroll-smooth"
             >
-                {/* Search */}
-                <ListItem
-                    type="custom"
-                    item={{
-                        name: `Search ${searchText}`,
-                        description: "Search in Google Chrome",
-                        func: () => {
-                            if (searchText !== "")
-                                chrome.search
-                                    .query({ text: searchText })
-                                    .catch((error) => {
-                                        console.log(error);
-                                    });
-                        },
-                    }}
-                />
                 {/* all opened tabs */}
                 {tabData.map((tab) => {
                     return (
@@ -183,6 +168,8 @@ const App = () => {
                         )
                     );
                 })}
+                {/* Search */}
+                <SearchListItem searchText={searchText} key={searchText} />
             </ul>
         </div>
     );

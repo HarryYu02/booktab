@@ -32,6 +32,7 @@ const ListItem = ({ type, item }: ListItemProps) => {
                         tabs: item.index,
                     })
                     .catch((error) => console.log(error));
+                window.close();
                 break;
 
             case "bookmark":
@@ -47,6 +48,7 @@ const ListItem = ({ type, item }: ListItemProps) => {
                             })
                             .catch((newTabError) => console.log(newTabError));
                     });
+                window.close();
                 break;
 
             case "custom":
