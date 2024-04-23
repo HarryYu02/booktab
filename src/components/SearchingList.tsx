@@ -4,6 +4,7 @@ import {
     CommandGroup,
     CommandInput,
     CommandList,
+    CommandSeparator,
 } from "@/components/ui/command";
 import SearchListItem from "./SearchListItem";
 import ListItem from "./ListItem";
@@ -51,7 +52,7 @@ const SearchingList = ({
                     })}
                 </CommandGroup>
                 <CommandGroup heading="Command" forceMount>
-                    <SearchListItem searchText={searchText} key={searchText} />
+                    <SearchListItem searchText={searchText} key="searching" />
                 </CommandGroup>
             </CommandList>
         </Command>

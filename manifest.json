@@ -6,6 +6,9 @@
     "action": {
         "default_popup": "index.html"
     },
+    "icons": {
+        "128": "public/icon128.png"
+    },
     "host_permissions": ["http://*/*", "https://*/*"],
     "permissions": [
         "tabGroups",
@@ -21,15 +24,8 @@
         "_execute_action": {
             "suggested_key": {
                 "default": "Ctrl+Shift+P",
-                "mac": "MacCtrl+Shift+P"
+                "mac": "Command+Shift+P"
             }
-        },
-        "focus-search-bar": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+Z",
-                "mac": "MacCtrl+Shift+Z"
-            },
-            "description": "focus search bar"
         }
     }
 }
