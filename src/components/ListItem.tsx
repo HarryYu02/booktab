@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { CommandItem } from "./ui/command";
 
 interface BookmarkItem {
     type: "bookmark";
@@ -21,10 +22,12 @@ interface CustomItem {
     };
 }
 
-type ListItemProps = BookmarkItem | TabItem | CustomItem;
+type ListItemProps = (BookmarkItem | TabItem | CustomItem) & {
+    forceMount?: boolean;
+};
 
-const ListItem = ({ type, item }: ListItemProps) => {
-    const onClickHandler = () => {
+const ListItem = ({ type, item, forceMount }: ListItemProps) => {
+    const onSelectHandler = () => {
         switch (type) {
             case "tab":
                 chrome.tabs
@@ -61,33 +64,30 @@ const ListItem = ({ type, item }: ListItemProps) => {
     };
 
     return (
-        <li className="snap-end">
-            <Button
-                variant="outline"
-                className="flex h-full w-full justify-between gap-2 transition duration-75 ease-in-out focus-visible:border-l-4 focus-visible:border-l-blue-500 focus-visible:bg-accent focus-visible:text-accent-foreground focus-visible:ring-0"
-                onClick={onClickHandler}
-                tabIndex={0}
+        <CommandItem
+            className="flex w-full snap-end justify-between"
+            onSelect={onSelectHandler}
+            forceMount={forceMount}
+        >
+            <Badge
+                className={cn(
+                    type === "tab" && "bg-teal-600",
+                    type === "bookmark" && "bg-cyan-700",
+                    type === "custom" && "bg-amber-600"
+                )}
             >
-                <Badge
-                    className={cn(
-                        type === "tab" && "bg-teal-600",
-                        type === "bookmark" && "bg-cyan-700",
-                        type === "custom" && "bg-amber-600"
-                    )}
-                >
-                    {type.charAt(0).toUpperCase() + type.slice(1)}
-                </Badge>
-                <div className="w-3/4 text-end">
-                    <p className="overflow-hidden text-ellipsis whitespace-nowrap text-lg text-primary">
-                        {type === "custom" ? item.name : item.title}
-                    </p>
+                {type.charAt(0).toUpperCase() + type.slice(1)}
+            </Badge>
+            <div className="w-3/4 text-end">
+                <p className="truncate text-lg text-primary">
+                    {type === "custom" ? item.name : item.title}
+                </p>
 
-                    <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xs text-muted-foreground">
-                        {type === "custom" ? item.description : item.url}
-                    </p>
-                </div>
-            </Button>
-        </li>
+                <p className="truncate text-xs text-muted-foreground">
+                    {type === "custom" ? item.description : item.url}
+                </p>
+            </div>
+        </CommandItem>
     );
 };
 
