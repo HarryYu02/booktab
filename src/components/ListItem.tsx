@@ -73,7 +73,7 @@ const ListItem = ({ type, item, forceMount, keywords }: ListItemProps) => {
             forceMount={forceMount}
             keywords={keywords}
         >
-            <div className="flex w-3/4 items-center gap-2 truncate">
+            <div className="flex w-3/4 items-center gap-2 ">
                 {type === "command" ? (
                     <item.icon className="size-6" />
                 ) : type === "bookmark" ? (
@@ -85,11 +85,11 @@ const ListItem = ({ type, item, forceMount, keywords }: ListItemProps) => {
                     // )
                     <img src={item.favIconUrl} className="size-6" />
                 )}
-                <div className="w-full flex-grow truncate text-start">
-                    <p className="text-lg text-primary">
+                <div className="w-full flex-grow overflow-hidden text-start">
+                    <p className="truncate text-lg text-primary">
                         {type === "command" ? item.name : item.title}
                     </p>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="truncate text-xs text-muted-foreground">
                         {type === "command" ? item.description : item.url}
                     </p>
                 </div>
