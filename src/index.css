@@ -65,3 +65,23 @@ body {
     width: 700px;
     overflow-y: hidden;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 0.75rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply rounded-lg bg-primary/50;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/75;
+}

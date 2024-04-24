@@ -73,12 +73,12 @@ const ListItem = ({ type, item, forceMount, keywords }: ListItemProps) => {
                 {type === "command" ? (
                     <item.icon className="size-6" />
                 ) : type === "bookmark" ? (
-                    item.url ? (
-                        <img src={faviconURL(item.url)} className="size-6" />
-                    ) : (
-                        <FaBookmark className="size-6" />
-                    )
+                    // item.url ? (
+                    //   <img src={faviconURL(item.url)} className="size-6" />
+                    // ) : (
+                    <FaBookmark className="size-6" />
                 ) : (
+                    // )
                     <img src={item.favIconUrl} className="size-6" />
                 )}
                 <div className="w-full flex-grow truncate text-start">

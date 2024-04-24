@@ -1,3 +1,4 @@
+import useTabs from "@/hooks/useTabs";
 import ListItem from "./ListItem";
 
 const TabList = ({ tabData }: { tabData: chrome.tabs.Tab[] }) => {
@@ -6,10 +7,10 @@ const TabList = ({ tabData }: { tabData: chrome.tabs.Tab[] }) => {
             {tabData.map((tab) => {
                 return (
                     <ListItem
-                        key={tab.id}
+                        key={`tab-${tab.id}`}
                         type="tab"
                         item={tab}
-                        keywords={[tab.url ?? ""]}
+                        keywords={[tab.url ?? "", "tabs"]}
                     />
                 );
             })}

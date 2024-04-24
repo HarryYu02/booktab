@@ -1,3 +1,4 @@
+import useBookmarks from "@/hooks/useBookmarks";
 import ListItem from "./ListItem";
 
 const BookmarkList = ({
@@ -10,10 +11,10 @@ const BookmarkList = ({
             {bookmarkData.map((bookmark) => {
                 return (
                     <ListItem
-                        key={bookmark.id}
+                        key={`bookmark-${bookmark.id}`}
                         type="bookmark"
                         item={bookmark}
-                        keywords={[bookmark.url ?? ""]}
+                        keywords={[bookmark.url ?? "", "bookmarks"]}
                     />
                 );
             })}
