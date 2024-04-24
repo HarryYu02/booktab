@@ -65,7 +65,11 @@ const ListItem = ({ type, item, forceMount, keywords }: ListItemProps) => {
         <CommandItem
             className="flex w-full items-center justify-between"
             onSelect={onSelectHandler}
-            value={type === "command" ? item.name : item.title}
+            value={
+                type === "command"
+                    ? `command-${item.name}`
+                    : `${type}-${item.title}`
+            }
             forceMount={forceMount}
             keywords={keywords}
         >
