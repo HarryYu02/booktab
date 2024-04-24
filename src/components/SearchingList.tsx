@@ -7,10 +7,14 @@ import {
     CommandShortcut,
 } from "@/components/ui/command";
 import SearchListItem from "./SearchListItem";
-import ListItem from "./ListItem";
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import ThemeListItem from "./ThemeListItem";
+import TabList from "./TabList";
+import BookmarkList from "./BookmarkList";
+import { IoIosReturnLeft } from "react-icons/io";
+import { ImCtrl } from "react-icons/im";
+import { Separator } from "./ui/separator";
 
 const SearchingList = ({
     tabData,
@@ -41,30 +45,21 @@ const SearchingList = ({
             />
             <CommandList className="h-full max-h-full">
                 <CommandEmpty>No results found</CommandEmpty>
-                <CommandGroup heading="Tabs">
-                    {tabData.map((tab) => {
-                        return (
-                            <ListItem
-                                key={tab.id}
-                                type="tab"
-                                item={tab}
-                                keywords={[tab.url ?? ""]}
-                            />
-                        );
-                    })}
-                </CommandGroup>
-                <CommandGroup heading="Bookmarks">
-                    {bookmarkData.map((bookmark) => {
-                        return (
-                            <ListItem
-                                key={bookmark.id}
-                                type="bookmark"
-                                item={bookmark}
-                                keywords={[bookmark.url ?? ""]}
-                            />
-                        );
-                    })}
-                </CommandGroup>
+                {searchText === "" ? (
+                    <>
+                        <CommandGroup heading="Tabs">
+                            <TabList tabData={tabData} />
+                        </CommandGroup>
+                        <CommandGroup heading="Bookmarks">
+                            <BookmarkList bookmarkData={bookmarkData} />
+                        </CommandGroup>
+                    </>
+                ) : (
+                    <CommandGroup heading="Result">
+                        <TabList tabData={tabData} />
+                        <BookmarkList bookmarkData={bookmarkData} />
+                    </CommandGroup>
+                )}
                 <CommandGroup heading="Command" forceMount>
                     <SearchListItem key="searching" searchText={searchText} />
                     <ThemeListItem key="dark-theme" targetTheme="dark" />
@@ -74,12 +69,25 @@ const SearchingList = ({
             </CommandList>
             <div className="flex items-center justify-end border-t p-1">
                 <Button
-                    className="flex items-center gap-2 text-lg hover:cursor-default"
+                    className="flex items-center gap-2 px-2 text-base hover:cursor-default"
                     variant={"ghost"}
                 >
                     Open
-                    <CommandShortcut className="rounded-lg bg-secondary p-2">
-                        ⌘B
+                    <CommandShortcut className="size-8 rounded-lg bg-secondary p-2">
+                        <IoIosReturnLeft className="size-4" />
+                    </CommandShortcut>
+                </Button>
+                <Separator orientation="vertical" className="m-2 h-3/4" />
+                <Button
+                    className="flex items-center gap-2 px-2 text-base text-muted-foreground hover:cursor-default"
+                    variant={"ghost"}
+                >
+                    Actions
+                    <CommandShortcut className="size-8 rounded-lg bg-secondary p-2">
+                        <ImCtrl className="size-4" />
+                    </CommandShortcut>
+                    <CommandShortcut className="size-8 rounded-lg bg-secondary p-2">
+                        <span className="size-4">K</span>
                     </CommandShortcut>
                 </Button>
             </div>

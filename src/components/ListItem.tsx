@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { capitalizeFirstLetter, cn } from "@/lib/utils";
 import { CommandItem } from "./ui/command";
 
 interface BookmarkItem {
@@ -68,12 +68,12 @@ const ListItem = ({ type, item, forceMount, keywords }: ListItemProps) => {
         >
             <Badge
                 className={cn(
-                    type === "tab" && "bg-teal-600",
-                    type === "bookmark" && "bg-cyan-700",
-                    type === "custom" && "bg-amber-600"
+                    type === "tab" && "bg-teal-600 dark:bg-teal-400",
+                    type === "bookmark" && "bg-cyan-700 dark:bg-cyan-400",
+                    type === "custom" && "bg-amber-600 dark:bg-amber-400"
                 )}
             >
-                {type.charAt(0).toUpperCase() + type.slice(1)}
+                {capitalizeFirstLetter(type)}
             </Badge>
             <div className="w-3/4 text-end">
                 <p className="truncate text-lg text-primary">
