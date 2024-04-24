@@ -1,3 +1,4 @@
+import { FaSearch } from "react-icons/fa";
 import ListItem from "./ListItem";
 
 interface SearchListItemProps {
@@ -7,10 +8,11 @@ interface SearchListItemProps {
 const SearchListItem = ({ searchText }: SearchListItemProps) => {
     return (
         <ListItem
-            type="custom"
+            type="command"
             item={{
                 name: `Search ${searchText}`,
                 description: "Search in Google Chrome",
+                icon: FaSearch,
                 func: () => {
                     if (searchText !== "") {
                         chrome.search

@@ -53,19 +53,38 @@ const SearchingList = ({
                         <CommandGroup heading="Bookmarks">
                             <BookmarkList bookmarkData={bookmarkData} />
                         </CommandGroup>
+                        <CommandGroup heading="Command" forceMount>
+                            <SearchListItem
+                                key="searching"
+                                searchText={searchText}
+                            />
+                            <ThemeListItem
+                                key="dark-theme"
+                                targetTheme="dark"
+                            />
+                            <ThemeListItem
+                                key="light-theme"
+                                targetTheme="light"
+                            />
+                            <ThemeListItem
+                                key="system-theme"
+                                targetTheme="system"
+                            />
+                        </CommandGroup>
                     </>
                 ) : (
                     <CommandGroup heading="Result">
                         <TabList tabData={tabData} />
                         <BookmarkList bookmarkData={bookmarkData} />
+                        <ThemeListItem key="dark-theme" targetTheme="dark" />
+                        <ThemeListItem key="light-theme" targetTheme="light" />
+                        <ThemeListItem
+                            key="system-theme"
+                            targetTheme="system"
+                        />
+                        <SearchListItem key="search" searchText={searchText} />
                     </CommandGroup>
                 )}
-                <CommandGroup heading="Command" forceMount>
-                    <SearchListItem key="searching" searchText={searchText} />
-                    <ThemeListItem key="dark-theme" targetTheme="dark" />
-                    <ThemeListItem key="light-theme" targetTheme="light" />
-                    <ThemeListItem key="system-theme" targetTheme="system" />
-                </CommandGroup>
             </CommandList>
             <div className="flex items-center justify-end border-t p-1">
                 <Button

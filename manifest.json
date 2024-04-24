@@ -12,6 +12,7 @@
     "host_permissions": ["http://*/*", "https://*/*"],
     "permissions": [
         "tabGroups",
+        "favicon",
         "scripting",
         "bookmarks",
         "tabs",
@@ -27,5 +28,12 @@
                 "mac": "Command+Shift+P"
             }
         }
-    }
+    },
+    "web_accessible_resources": [
+        {
+            "resources": ["_favicon/*"],
+            "matches": ["<all_urls>"],
+            "extension_ids": ["*"]
+        }
+    ]
 }
