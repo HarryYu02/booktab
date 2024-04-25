@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { capitalizeFirstLetter, cn, faviconURL } from "@/lib/utils";
+import { capitalizeFirstLetter, cn } from "@/lib/utils";
 import { CommandItem } from "./ui/command";
 import { FaBookmark } from "react-icons/fa6";
 import { IconType } from "react-icons";
