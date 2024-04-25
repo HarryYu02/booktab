@@ -12,6 +12,14 @@ There are also some work around like pressing Ctrl+Shift+A to search tabs, or pr
 
 My usecase for BookTab is to run it using a Powershell Script to run it, save all the code documentations in a single folder so it doesnt clutter up my bookmark bar, and search for them when I need them.
 
+## Features
+
+-   Searching through bookmarks and tabs
+-   Open bookmarks on new tab
+-   Navigate to specific tab
+-   Search the text on google
+-   Light/Dark theme
+
 ## Technologies Used
 
 -   [React](https://react.dev/)
