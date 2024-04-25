@@ -1,4 +1,3 @@
-import { ImCtrl } from "react-icons/im";
 import { Button } from "./ui/button";
 import { CommandShortcut } from "./ui/command";
 import {
@@ -12,10 +11,12 @@ const CommandActions = ({
   currentItem,
   openActions,
   setOpenActions,
+  command,
 }: {
   currentItem: string;
   openActions: boolean;
   setOpenActions: React.Dispatch<React.SetStateAction<boolean>>;
+  command: chrome.commands.Command | null;
 }) => {
   return (
     <Popover open={openActions} onOpenChange={setOpenActions}>
@@ -25,15 +26,21 @@ const CommandActions = ({
           variant={"ghost"}
         >
           Actions
-          <CommandShortcut className="size-8 rounded-lg bg-secondary p-2">
-            <ImCtrl className="size-4" />
-          </CommandShortcut>
-          <CommandShortcut className="size-8 rounded-lg bg-secondary p-2">
-            <span className="size-4">L</span>
-          </CommandShortcut>
+          {command?.shortcut?.split("").map((key) => (
+            <CommandShortcut
+              key={`command_actions-key-${key}`}
+              className="size-8 rounded-lg bg-secondary p-2"
+            >
+              <span className="size-4">{key}</span>
+            </CommandShortcut>
+          ))}
         </Button>
       </PopoverTrigger>
-      <PopoverContent>{currentItem}</PopoverContent>
+      <PopoverContent>
+        {currentItem.slice(0, currentItem.indexOf("-"))}
+        <br />
+        {currentItem.slice(currentItem.indexOf("-") + 1)}
+      </PopoverContent>
     </Popover>
   );
 };

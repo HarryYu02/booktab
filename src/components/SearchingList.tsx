@@ -22,13 +22,37 @@ const SearchingList = () => {
   const [currentItem, setCurrentItem] = useState("");
   const [searchText, setSearchText] = useState("");
   const [openActions, setOpenActions] = useState(false);
+  const [commands, setCommands] = useState<chrome.commands.Command[]>([]);
   const tabData = useTabs();
   const bookmarkData = useBookmarks();
   const listRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const onCommandHandler = (command: string) => {
+      console.log(`Command "${command}" triggered`);
+      if (command === "command_actions") {
+        setOpenActions((prev) => !prev);
+      }
+    };
+
+    const getCommandShortcuts = async () => {
+      const defaultCommands = await chrome.commands.getAll();
+      setCommands(defaultCommands);
+      return defaultCommands;
+    };
+    getCommandShortcuts().catch((error) => {
+      console.log(error);
+    });
+
+    chrome.commands.onCommand.addListener(onCommandHandler);
+    return () => {
+      setOpenActions(false);
+      chrome.commands.onCommand.removeListener(onCommandHandler);
+    };
+  }, []);
+
+  useEffect(() => {
     const commandList = listRef.current;
-    // console.log(commandList);
     commandList?.scrollTo(0, 0);
   }, [searchText]);
 
@@ -78,6 +102,10 @@ const SearchingList = () => {
           currentItem={currentItem}
           openActions={openActions}
           setOpenActions={setOpenActions}
+          command={
+            commands.find((command) => command.name === "command_actions") ??
+            null
+          }
         />
       </div>
     </Command>
