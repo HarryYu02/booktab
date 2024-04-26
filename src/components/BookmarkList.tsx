@@ -7,13 +7,14 @@ const BookmarkList = ({
 }) => {
     return (
         <>
-            {bookmarkData.map((bookmark) => {
+            {bookmarkData.map((bookmark, index) => {
                 return (
                     <ListItem
                         key={`bookmark-${bookmark.id}`}
                         type="bookmark"
                         item={bookmark}
                         keywords={[bookmark.url ?? "", "bookmarks"]}
+                        index={index}
                     />
                 );
             })}

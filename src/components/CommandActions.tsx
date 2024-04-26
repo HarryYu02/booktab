@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdFolderCopy } from "react-icons/md";
 import {
     Command,
     CommandInput,
@@ -87,22 +87,26 @@ const CommandActions = ({
                                     }}
                                     className="flex items-center gap-2"
                                 >
-                                    <MdDelete className="size-4" />
+                                    <MdDelete className="size-4 p-0" />
                                     Close Tab
                                 </CommandItem>
-                                {/* TODO: Duplicate item name */}
-                                {/* <CommandItem
-                  onSelect={() => {
-                    chrome.tabs
-                      .duplicate(target.id ?? chrome.tabs.TAB_ID_NONE)
-                      .catch((error) => {
-                        console.log(error);
-                      });
-                    window.close();
-                  }}
-                >
-                  Copy Tab
-                </CommandItem> */}
+                                <CommandItem
+                                    onSelect={() => {
+                                        chrome.tabs
+                                            .duplicate(
+                                                target.id ??
+                                                    chrome.tabs.TAB_ID_NONE
+                                            )
+                                            .catch((error) => {
+                                                console.log(error);
+                                            });
+                                        window.close();
+                                    }}
+                                    className="flex items-center gap-2"
+                                >
+                                    <MdFolderCopy className="size-4 p-0" />
+                                    Copy Tab
+                                </CommandItem>
                             </>
                         ) : target && itemType === "bookmark" ? (
                             <>

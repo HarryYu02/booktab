@@ -29,9 +29,16 @@ interface CmdItem {
 
 type ListItemProps = (BookmarkItem | TabItem | CmdItem) & {
     forceMount?: boolean;
+    index: number;
 };
 
-const ListItem = ({ type, item, forceMount, keywords }: ListItemProps) => {
+const ListItem = ({
+    type,
+    item,
+    forceMount,
+    keywords,
+    index,
+}: ListItemProps) => {
     const onSelectHandler = () => {
         switch (type) {
             case "tab":
@@ -66,9 +73,9 @@ const ListItem = ({ type, item, forceMount, keywords }: ListItemProps) => {
             className="flex w-full items-center justify-between"
             onSelect={onSelectHandler}
             value={
-                type === "command"
+                (type === "command"
                     ? `command-${item.name}`
-                    : `${type}-${item.title}`
+                    : `${type}-${item.title}`) + `-${index}`
             }
             forceMount={forceMount}
             keywords={keywords}

@@ -26,6 +26,7 @@ const ThemeListItem = ({ targetTheme }: { targetTheme: Theme }) => {
                 },
             }}
             keywords={[`${targetTheme} mode`]}
+            index={targetTheme.length}
         />
     );
 };

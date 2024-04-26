@@ -25,6 +25,7 @@ const SearchListItem = ({ searchText }: SearchListItemProps) => {
                 },
             }}
             keywords={[]}
+            index={0}
         />
     );
 };

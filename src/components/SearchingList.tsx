@@ -58,9 +58,11 @@ const SearchingList = () => {
         commandList?.scrollTo(0, 0);
     }, [searchText]);
 
-    const item = currentItem.indexOf("-");
-    const itemType = currentItem.slice(0, item) as ItemType;
-    const itemValue = currentItem.slice(item + 1);
+    const prefixIndex = currentItem.indexOf("-");
+    const suffixIndex = currentItem.lastIndexOf("-");
+    const itemType = currentItem.slice(0, prefixIndex) as ItemType;
+    const itemValue = currentItem.slice(prefixIndex + 1, suffixIndex);
+    // const itemIdentifier = currentItem.slice(suffixIndex + 1);
 
     return (
         <Command
