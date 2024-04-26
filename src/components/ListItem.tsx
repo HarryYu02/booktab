@@ -1,7 +1,6 @@
 import { Badge } from "@/components/ui/badge";
-import { capitalizeFirstLetter, cn } from "@/lib/utils";
+import { capitalizeFirstLetter, cn, faviconURL } from "@/lib/utils";
 import { CommandItem } from "./ui/command";
-import { FaBookmark } from "react-icons/fa6";
 import { IconType } from "react-icons";
 
 interface BookmarkItem {
@@ -84,7 +83,12 @@ const ListItem = ({
                 {type === "command" ? (
                     <item.icon className="size-6" />
                 ) : type === "bookmark" ? (
-                    <FaBookmark className="size-6" />
+                    // <FaBookmark className="size-6" />
+                    <img
+                        src={faviconURL(item.url ?? "")}
+                        className="size-6"
+                        alt={`${item.title}-favicon`}
+                    />
                 ) : (
                     <img
                         src={item.favIconUrl}

@@ -70,6 +70,8 @@ const SearchingList = () => {
             label="BookTab"
             value={currentItem}
             onValueChange={setCurrentItem}
+            disablePointerSelection
+            vimBindings
         >
             <CommandInput
                 autoFocus
