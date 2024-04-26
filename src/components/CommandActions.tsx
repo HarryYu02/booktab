@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/popover";
 import React from "react";
 import { LuReplace } from "react-icons/lu";
+import { capitalizeFirstLetter } from "@/lib/utils";
 
 type TabTarget = {
     itemType: "tab";
@@ -66,7 +67,7 @@ const CommandActions = ({
                 <Command className="flex flex-col gap-2">
                     <div>
                         <p className="text-xs text-muted-foreground">
-                            {itemType}
+                            {capitalizeFirstLetter(itemType)}
                         </p>
                         <p className="w-full truncate text-base">{itemName}</p>
                     </div>
@@ -129,7 +130,10 @@ const CommandActions = ({
                             <>{target}</>
                         ) : null}
                     </CommandList>
-                    <CommandInput autoFocus />
+                    <CommandInput
+                        placeholder="Search for actions..."
+                        autoFocus
+                    />
                 </Command>
             </PopoverContent>
         </Popover>

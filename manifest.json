@@ -28,8 +28,8 @@
         },
         "command_actions": {
             "suggested_key": {
-                "default": "Ctrl+L",
-                "mac": "MacCtrl+L"
+                "default": "Ctrl+I",
+                "mac": "MacCtrl+I"
             },
             "description": "Command actions"
         }
