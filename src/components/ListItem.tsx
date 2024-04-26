@@ -54,7 +54,6 @@ const ListItem = ({ type, item, forceMount, keywords }: ListItemProps) => {
 
             case "command":
                 item.func();
-                window.close();
                 break;
 
             default:

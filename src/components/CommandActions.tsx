@@ -1,8 +1,7 @@
 import { Button } from "./ui/button";
+import { MdDelete } from "react-icons/md";
 import {
     Command,
-    CommandEmpty,
-    CommandGroup,
     CommandInput,
     CommandItem,
     CommandList,
@@ -14,23 +13,22 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import React from "react";
+import { LuReplace } from "react-icons/lu";
 
 type TabTarget = {
     itemType: "tab";
-    target: chrome.tabs.Tab;
+    target: chrome.tabs.Tab | null;
 };
 
 type BookmarkTarget = {
     itemType: "bookmark";
-    target: chrome.bookmarks.BookmarkTreeNode;
+    target: chrome.bookmarks.BookmarkTreeNode | null;
 };
 
 type CmdTarget = {
     itemType: "command";
-    target: string;
+    target: string | null;
 };
-
-type Target = TabTarget | BookmarkTarget | CmdTarget;
 
 const CommandActions = ({
     itemType,
@@ -39,7 +37,7 @@ const CommandActions = ({
     setOpenActions,
     command,
     target,
-}: Target & {
+}: (TabTarget | BookmarkTarget | CmdTarget) & {
     itemName: string;
     openActions: boolean;
     setOpenActions: React.Dispatch<React.SetStateAction<boolean>>;
@@ -65,52 +63,69 @@ const CommandActions = ({
                 </Button>
             </PopoverTrigger>
             <PopoverContent>
-                <Command className="">
-                    <p className="text-xs text-muted-foreground">{itemType}</p>
-                    <p className="w-full truncate text-base">{itemName}</p>
+                <Command className="flex flex-col gap-2">
+                    <div>
+                        <p className="text-xs text-muted-foreground">
+                            {itemType}
+                        </p>
+                        <p className="w-full truncate text-base">{itemName}</p>
+                    </div>
                     <CommandList>
-                        <CommandGroup heading={"Actions"} forceMount>
-                            {itemType === "tab" ? (
-                                <>
-                                    <CommandItem
-                                        onSelect={() => {
-                                            chrome.tabs
-                                                .remove(
-                                                    target.id ??
-                                                        chrome.tabs.TAB_ID_NONE
-                                                )
-                                                .catch((error) => {
-                                                    console.log(error);
-                                                });
-                                            window.close();
-                                        }}
-                                    >
-                                        Close Tab
-                                    </CommandItem>
-                                    <CommandItem
-                                        onSelect={() => {
-                                            chrome.tabs
-                                                .duplicate(
-                                                    target.id ??
-                                                        chrome.tabs.TAB_ID_NONE
-                                                )
-                                                .catch((error) => {
-                                                    console.log(error);
-                                                });
-                                            window.close();
-                                        }}
-                                    >
-                                        Copy Tab
-                                    </CommandItem>
-                                </>
-                            ) : itemType === "bookmark" ? (
-                                <></>
-                            ) : itemType === "command" ? (
-                                <></>
-                            ) : null}
-                        </CommandGroup>
+                        {target && itemType === "tab" ? (
+                            <>
+                                <CommandItem
+                                    onSelect={() => {
+                                        chrome.tabs
+                                            .remove(
+                                                target.id ??
+                                                    chrome.tabs.TAB_ID_NONE
+                                            )
+                                            .catch((error) => {
+                                                console.log(error);
+                                            });
+                                        window.close();
+                                    }}
+                                    className="flex items-center gap-2"
+                                >
+                                    <MdDelete className="size-4" />
+                                    Close Tab
+                                </CommandItem>
+                                {/* TODO: Duplicate item name */}
+                                {/* <CommandItem
+                  onSelect={() => {
+                    chrome.tabs
+                      .duplicate(target.id ?? chrome.tabs.TAB_ID_NONE)
+                      .catch((error) => {
+                        console.log(error);
+                      });
+                    window.close();
+                  }}
+                >
+                  Copy Tab
+                </CommandItem> */}
+                            </>
+                        ) : target && itemType === "bookmark" ? (
+                            <>
+                                <CommandItem
+                                    onSelect={() => {
+                                        chrome.tabs
+                                            .update({ url: target.url })
+                                            .catch((error) => {
+                                                console.log(error);
+                                            });
+                                        window.close();
+                                    }}
+                                    className="flex items-center gap-2"
+                                >
+                                    <LuReplace className="size-4" />
+                                    Open in current tab
+                                </CommandItem>
+                            </>
+                        ) : target && itemType === "command" ? (
+                            <>{target}</>
+                        ) : null}
                     </CommandList>
-                    <CommandInput />
+                    <CommandInput autoFocus />
                 </Command>
             </PopoverContent>
         </Popover>

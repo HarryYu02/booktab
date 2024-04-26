@@ -58,9 +58,9 @@ const SearchingList = () => {
         commandList?.scrollTo(0, 0);
     }, [searchText]);
 
-    const item = currentItem.split("-");
-    const itemType = item[0] as ItemType;
-    const itemValue = item[1];
+    const item = currentItem.indexOf("-");
+    const itemType = currentItem.slice(0, item) as ItemType;
+    const itemValue = currentItem.slice(item + 1);
 
     return (
         <Command
@@ -118,13 +118,16 @@ const SearchingList = () => {
                         ) ?? null
                     }
                     target={
-                        (itemType === "tab"
-                            ? tabData.find((tab) => tab.title === itemValue)
+                        itemType === "tab"
+                            ? tabData.find((tab) => tab.title === itemValue) ||
+                              null
                             : itemType === "bookmark"
                               ? bookmarkData.find(
                                     (bookmark) => bookmark.title === itemValue
-                                )
-                              : "command") || "unknown"
+                                ) || null
+                              : itemType === "command"
+                                ? "command"
+                                : null
                     }
                 />
             </div>
