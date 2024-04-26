@@ -17,6 +17,6 @@ export const faviconURL = (u: string) => {
     const url = new URL(chrome.runtime.getURL("/_favicon/"));
     url.searchParams.set("pageUrl", u);
     url.searchParams.set("size", "32");
-    console.log(url.toString());
+    // console.log(url.toString());
     return url.toString();
 };

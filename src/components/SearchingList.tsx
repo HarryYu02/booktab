@@ -28,6 +28,7 @@ const SearchingList = () => {
     const tabData = useTabs();
     const bookmarkData = useBookmarks();
     const listRef = useRef<HTMLDivElement | null>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
         const onCommandHandler = (command: string) => {
@@ -58,6 +59,13 @@ const SearchingList = () => {
         commandList?.scrollTo(0, 0);
     }, [searchText]);
 
+    useEffect(() => {
+        if (openActions === false) {
+            console.log(inputRef);
+            inputRef.current?.focus();
+        }
+    }, [openActions]);
+
     const prefixIndex = currentItem.indexOf("-");
     const suffixIndex = currentItem.lastIndexOf("-");
     const itemType = currentItem.slice(0, prefixIndex) as ItemType;
@@ -75,6 +83,7 @@ const SearchingList = () => {
         >
             <CommandInput
                 autoFocus
+                ref={inputRef}
                 className="h-12"
                 placeholder="Search for tabs and bookmarks..."
                 value={searchText}
