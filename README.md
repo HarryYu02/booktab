@@ -19,6 +19,7 @@ My usecase for BookTab is to save all the code documentations in a single folder
 -   Navigate to specific tab
 -   Search the text on google
 -   Light/Dark theme
+-   And more...
 
 ## Technologies Used
 
@@ -128,6 +129,7 @@ BookTab supports the following keyboard shortcuts (basically all shortcuts that'
 -   **Move to Next Option**: Down / Ctrl+N / Ctrl+J
 -   **Move to Previous Option**: Up / Ctrl+P / Ctrl+K
 -   **Select Current Option**: Enter
+-   **Open Command Actions**: Ctrl+I
 
 You can customize the open/close extension shortcut in manifest,json, while users can customize these shortcuts under `chrome://extensions/` > Keyboard Shortcut in the sidebar.
 

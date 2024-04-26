@@ -32,7 +32,7 @@ const SearchingList = () => {
 
     useEffect(() => {
         const onCommandHandler = (command: string) => {
-            console.log(`Command "${command}" triggered`);
+            // console.log(`Command "${command}" triggered`);
             if (command === "command_actions") {
                 setOpenActions((prev) => !prev);
             }
@@ -61,7 +61,7 @@ const SearchingList = () => {
 
     useEffect(() => {
         if (openActions === false) {
-            console.log(inputRef);
+            // console.log(inputRef);
             inputRef.current?.focus();
         }
     }, [openActions]);
