@@ -17,6 +17,7 @@ import { Separator } from "./ui/separator";
 import useTabs from "@/hooks/useTabs";
 import useBookmarks from "@/hooks/useBookmarks";
 import CommandActions from "./CommandActions";
+import Loading from "./Loading";
 
 type ItemType = "tab" | "bookmark" | "command";
 
@@ -74,8 +75,7 @@ const SearchingList = () => {
     const itemValue = currentItem.slice(prefixIndex + 1, suffixIndex);
     // const itemIdentifier = currentItem.slice(suffixIndex + 1);
 
-    if (bookmarkData.length === 0 || tabData.length === 0)
-        return <div className="bg-background"></div>;
+    if (bookmarkData.length === 0 || tabData.length === 0) return <Loading />;
 
     return (
         <Command

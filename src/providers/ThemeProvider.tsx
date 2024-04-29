@@ -1,3 +1,4 @@
+import Loading from "@/components/Loading";
 import { createContext, useEffect, useState } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 
@@ -58,12 +59,7 @@ export function ThemeProvider({
         root.classList.add(theme);
     }, [theme, storageKey]);
 
-    if (theme === "system")
-        return (
-            <div className="flex h-screen items-center justify-center">
-                <AiOutlineLoading className="size-12 animate-spin" />
-            </div>
-        );
+    if (theme === "system") return <Loading />;
 
     const value = {
         theme,
