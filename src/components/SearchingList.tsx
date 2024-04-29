@@ -43,11 +43,13 @@ const SearchingList = () => {
             setCommands(defaultCommands);
             return defaultCommands;
         };
+
         getCommandShortcuts().catch((error) => {
             console.log(error);
         });
 
         chrome.commands.onCommand.addListener(onCommandHandler);
+
         return () => {
             setOpenActions(false);
             chrome.commands.onCommand.removeListener(onCommandHandler);
@@ -72,6 +74,9 @@ const SearchingList = () => {
     const itemValue = currentItem.slice(prefixIndex + 1, suffixIndex);
     // const itemIdentifier = currentItem.slice(suffixIndex + 1);
 
+    if (bookmarkData.length === 0 || tabData.length === 0)
+        return <div className="bg-background"></div>;
+
     return (
         <Command
             className="flex flex-col rounded-lg border shadow-md"
@@ -83,6 +88,7 @@ const SearchingList = () => {
         >
             <CommandInput
                 autoFocus
+                id="command-input"
                 ref={inputRef}
                 className="h-12"
                 placeholder="Search for tabs and bookmarks..."
@@ -102,7 +108,7 @@ const SearchingList = () => {
                     <BookmarkList bookmarkData={bookmarkData} />
                     <ThemeListItem key="dark-theme" targetTheme="dark" />
                     <ThemeListItem key="light-theme" targetTheme="light" />
-                    <ThemeListItem key="system-theme" targetTheme="system" />
+                    {/* <ThemeListItem key="system-theme" targetTheme="system" /> */}
                     <SearchListItem
                         key="search-google"
                         searchText={searchText}

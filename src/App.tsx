@@ -1,13 +1,10 @@
 import SearchingList from "./components/SearchingList";
-import { ThemeProvider } from "./providers/ThemeProvider";
 
 const App = () => {
     return (
-        <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-            <div className="flex h-screen flex-col items-center justify-center p-2">
-                <SearchingList />
-            </div>
-        </ThemeProvider>
+        <div className="m-auto flex h-screen w-full flex-col items-center justify-center p-2">
+            <SearchingList />
+        </div>
     );
 };
 

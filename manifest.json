@@ -4,7 +4,11 @@
     "version": "1.0",
     "manifest_version": 3,
     "action": {
-        "default_popup": "index.html"
+        "default_popup": "index.html",
+        "default_title": "Click to open panel"
+    },
+    "side_panel": {
+        "default_path": "index.html"
     },
     "icons": {
         "128": "public/icon128.png"
@@ -17,7 +21,8 @@
         "tabs",
         "activeTab",
         "search",
-        "storage"
+        "storage",
+        "sidePanel"
     ],
     "commands": {
         "_execute_action": {
@@ -40,5 +45,9 @@
             "matches": ["<all_urls>"],
             "extension_ids": ["*"]
         }
-    ]
+    ],
+    "background": {
+        "service_worker": "src/background.ts",
+        "type": "module"
+    }
 }
