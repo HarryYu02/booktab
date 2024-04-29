@@ -10,8 +10,8 @@ const SearchListItem = ({ searchText }: SearchListItemProps) => {
         <ListItem
             type="command"
             item={{
-                name: `Search ${searchText}`,
-                description: "Search in Google Chrome",
+                name: "Search",
+                description: `Search '${searchText}'`,
                 icon: FaSearch,
                 func: () => {
                     if (searchText !== "") {
@@ -24,7 +24,7 @@ const SearchListItem = ({ searchText }: SearchListItemProps) => {
                     }
                 },
             }}
-            keywords={[]}
+            keywords={[searchText]}
             index={0}
         />
     );

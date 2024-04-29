@@ -13,7 +13,11 @@ const BookmarkList = ({
                         key={`bookmark-${bookmark.id}`}
                         type="bookmark"
                         item={bookmark}
-                        keywords={[bookmark.url ?? "", "bookmarks"]}
+                        keywords={[
+                            bookmark.title,
+                            bookmark.url ?? "",
+                            "bookmarks",
+                        ]}
                         index={index}
                     />
                 );

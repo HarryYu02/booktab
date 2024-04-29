@@ -33,8 +33,7 @@
         },
         "command_actions": {
             "suggested_key": {
-                "default": "Ctrl+I",
-                "mac": "MacCtrl+I"
+                "default": "Ctrl+I"
             },
             "description": "Command actions"
         }

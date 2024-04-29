@@ -9,7 +9,7 @@ const TabList = ({ tabData }: { tabData: chrome.tabs.Tab[] }) => {
                         key={`tab-${tab.id}`}
                         type="tab"
                         item={tab}
-                        keywords={[tab.url ?? "", "tabs"]}
+                        keywords={[tab.title ?? "", tab.url ?? "", "tabs"]}
                         index={index}
                     />
                 );

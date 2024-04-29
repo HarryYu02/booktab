@@ -83,7 +83,6 @@ const SearchingList = () => {
             label="BookTab"
             value={currentItem}
             onValueChange={setCurrentItem}
-            disablePointerSelection
             vimBindings
         >
             <CommandInput
@@ -108,7 +107,6 @@ const SearchingList = () => {
                     <BookmarkList bookmarkData={bookmarkData} />
                     <ThemeListItem key="dark-theme" targetTheme="dark" />
                     <ThemeListItem key="light-theme" targetTheme="light" />
-                    {/* <ThemeListItem key="system-theme" targetTheme="system" /> */}
                     <SearchListItem
                         key="search-google"
                         searchText={searchText}
