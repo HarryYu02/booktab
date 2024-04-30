@@ -18,32 +18,29 @@ import { capitalizeFirstLetter } from "@/lib/utils";
 
 type TabTarget = {
     itemType: "tab";
-    target: chrome.tabs.Tab | null;
+    tab: chrome.tabs.Tab;
 };
 
 type BookmarkTarget = {
     itemType: "bookmark";
-    target: chrome.bookmarks.BookmarkTreeNode | null;
+    bookmark: chrome.bookmarks.BookmarkTreeNode;
 };
 
 type CmdTarget = {
     itemType: "command";
-    target: string | null;
+    command: string;
 };
 
-const CommandActions = ({
-    itemType,
-    itemName,
-    openActions,
-    setOpenActions,
-    command,
-    target,
-}: (TabTarget | BookmarkTarget | CmdTarget) & {
-    itemName: string;
-    openActions: boolean;
-    setOpenActions: React.Dispatch<React.SetStateAction<boolean>>;
-    command: chrome.commands.Command | null;
-}) => {
+const CommandActions = (
+    props: (TabTarget | BookmarkTarget | CmdTarget) & {
+        itemName: string;
+        openActions: boolean;
+        setOpenActions: React.Dispatch<React.SetStateAction<boolean>>;
+        shortcut: chrome.commands.Command | null;
+    }
+) => {
+    const { shortcut, itemName, itemType, openActions, setOpenActions } = props;
+
     return (
         <Popover open={openActions} onOpenChange={setOpenActions}>
             <PopoverTrigger asChild>
@@ -52,7 +49,7 @@ const CommandActions = ({
                     variant={"ghost"}
                 >
                     Actions
-                    {command?.shortcut?.split("").map((key) => (
+                    {shortcut?.shortcut?.split("").map((key) => (
                         <CommandShortcut
                             key={`command_actions-key-${key}`}
                             className="size-8 rounded-lg bg-secondary p-2"
@@ -60,7 +57,7 @@ const CommandActions = ({
                             <span className="size-4">{key}</span>
                         </CommandShortcut>
                     ))}
-                    {(!command || !command.shortcut) && " Not Set"}
+                    {(!shortcut || !shortcut.shortcut) && " Not Set"}
                 </Button>
             </PopoverTrigger>
             <PopoverContent>
@@ -72,13 +69,13 @@ const CommandActions = ({
                         <p className="w-full truncate text-base">{itemName}</p>
                     </div>
                     <CommandList>
-                        {target && itemType === "tab" ? (
+                        {itemType === "tab" ? (
                             <>
                                 <CommandItem
                                     onSelect={() => {
                                         chrome.tabs
                                             .remove(
-                                                target.id ??
+                                                props.tab.id ??
                                                     chrome.tabs.TAB_ID_NONE
                                             )
                                             .catch((error) => {
@@ -95,7 +92,7 @@ const CommandActions = ({
                                     onSelect={() => {
                                         chrome.tabs
                                             .duplicate(
-                                                target.id ??
+                                                props.tab.id ??
                                                     chrome.tabs.TAB_ID_NONE
                                             )
                                             .catch((error) => {
@@ -109,12 +106,12 @@ const CommandActions = ({
                                     Copy Tab
                                 </CommandItem>
                             </>
-                        ) : target && itemType === "bookmark" ? (
+                        ) : itemType === "bookmark" ? (
                             <>
                                 <CommandItem
                                     onSelect={() => {
                                         chrome.tabs
-                                            .update({ url: target.url })
+                                            .update({ url: props.bookmark.url })
                                             .catch((error) => {
                                                 console.log(error);
                                             });
@@ -126,8 +123,8 @@ const CommandActions = ({
                                     Open in current tab
                                 </CommandItem>
                             </>
-                        ) : target && itemType === "command" ? (
-                            <>{target}</>
+                        ) : itemType === "command" ? (
+                            <>{props.command}</>
                         ) : null}
                     </CommandList>
                     <CommandInput

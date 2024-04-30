@@ -7,7 +7,7 @@ import {
     CommandShortcut,
 } from "@/components/ui/command";
 import SearchListItem from "./SearchListItem";
-import { useEffect, useRef, useState } from "react";
+import { ElementRef, useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import ThemeListItem from "./ThemeListItem";
 import TabList from "./TabList";
@@ -19,7 +19,13 @@ import useBookmarks from "@/hooks/useBookmarks";
 import CommandActions from "./CommandActions";
 import Loading from "./Loading";
 
-type ItemType = "tab" | "bookmark" | "command";
+const itemTypes = {
+    tab: "tab",
+    bookmark: "bookmark",
+    command: "command",
+} as const;
+
+type ItemType = (typeof itemTypes)[keyof typeof itemTypes];
 
 const SearchingList = () => {
     const [currentItem, setCurrentItem] = useState("");
@@ -28,8 +34,8 @@ const SearchingList = () => {
     const [commands, setCommands] = useState<chrome.commands.Command[]>([]);
     const tabData = useTabs();
     const bookmarkData = useBookmarks();
-    const listRef = useRef<HTMLDivElement | null>(null);
-    const inputRef = useRef<HTMLInputElement | null>(null);
+    const listRef = useRef<ElementRef<typeof CommandList>>(null);
+    const inputRef = useRef<ElementRef<typeof CommandInput>>(null);
 
     useEffect(() => {
         const onCommandHandler = (command: string) => {
@@ -125,27 +131,29 @@ const SearchingList = () => {
                 </Button>
                 <Separator orientation="vertical" className="m-2 h-3/4" />
                 <CommandActions
-                    itemType={itemType}
                     itemName={itemValue}
                     openActions={openActions}
                     setOpenActions={setOpenActions}
-                    command={
+                    shortcut={
                         commands.find(
                             (command) => command.name === "command_actions"
                         ) ?? null
                     }
-                    target={
-                        itemType === "tab"
-                            ? tabData.find((tab) => tab.title === itemValue) ||
-                              null
-                            : itemType === "bookmark"
-                              ? bookmarkData.find(
+                    {...(itemType === "tab"
+                        ? {
+                              itemType,
+                              tab: tabData.find(
+                                  (tab) => tab.title === itemValue
+                              ),
+                          }
+                        : itemType === "bookmark"
+                          ? {
+                                itemType,
+                                bookmark: bookmarkData.find(
                                     (bookmark) => bookmark.title === itemValue
-                                ) || null
-                              : itemType === "command"
-                                ? "command"
-                                : null
-                    }
+                                ),
+                            }
+                          : { itemType, command: "command" })}
                 />
             </div>
         </Command>

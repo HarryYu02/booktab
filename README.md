@@ -14,30 +14,30 @@ My usecase for BookTab is to save all the code documentations in a single folder
 
 ## Features
 
-- Searching through bookmarks and tabs
-- Open bookmarks on new tab
-- Navigate to specific tab
-- Search the text on google
-- Light/Dark theme
-- And more...
+-   Searching through bookmarks and tabs
+-   Open bookmarks on new tab
+-   Navigate to specific tab
+-   Search the text on google
+-   Light/Dark theme
+-   And more...
 
 ## Technologies Used
 
-- [React](https://react.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Vite](https://vitejs.dev/) (Build tool)
-- [Chrome Extension Manifest V3](https://developer.chrome.com/docs/extensions)
-- [CRXJS/vite-plugin](https://crxjs.dev/vite-plugin) (Support for Chrome Extension API)
-- [TailwindCSS](https://tailwindcss.com/)
-- [ShadcnUI](https://ui.shadcn.com/)
+-   [React](https://react.dev/)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [Vite](https://vitejs.dev/) (Build tool)
+-   [Chrome Extension Manifest V3](https://developer.chrome.com/docs/extensions)
+-   [CRXJS/vite-plugin](https://crxjs.dev/vite-plugin) (Support for Chrome Extension API)
+-   [TailwindCSS](https://tailwindcss.com/)
+-   [ShadcnUI](https://ui.shadcn.com/)
 
 ## Installation and Usage
 
 Before running this project locally, ensure you have the following installed on your system:
 
-- [Node.js](https://nodejs.org/) (v20.x or later)
-- [Yarn](https://yarnpkg.com/) (you can use npm but I use yarn for this project)
-- [Git](https://git-scm.com/)
+-   [Node.js](https://nodejs.org/) (v20.x or later)
+-   [Yarn](https://yarnpkg.com/) (you can use npm but I use yarn for this project)
+-   [Git](https://git-scm.com/)
 
 To try out BookTab locally:
 
@@ -125,11 +125,11 @@ That's it! Your BookTab extension should now be updated with the latest changes.
 
 BookTab supports the following keyboard shortcuts (basically all shortcuts that's compatible with cmdk):
 
-- **Open / Close Extension**: Ctrl+Shift+P (Mac: Command+Shift+P)
-- **Move to Next Option**: Down / Ctrl+N / Ctrl+J
-- **Move to Previous Option**: Up / Ctrl+P / Ctrl+K
-- **Select Current Option**: Enter
-- **Open Command Actions**: Ctrl+I (Mac: Command+I)
+-   **Open / Close Extension**: Ctrl+Shift+P (Mac: Command+Shift+P)
+-   **Move to Next Option**: Down / Ctrl+N / Ctrl+J
+-   **Move to Previous Option**: Up / Ctrl+P / Ctrl+K
+-   **Select Current Option**: Enter
+-   **Open Command Actions**: Ctrl+I (Mac: Command+I)
 
 You can customize the open/close extension shortcut in manifest,json, while users can customize these shortcuts under `chrome://extensions/` > Keyboard Shortcut in the sidebar.
 
@@ -137,8 +137,8 @@ You can customize the open/close extension shortcut in manifest,json, while user
 
 Contributions to BookTab are welcome! Here are a few ways you can contribute:
 
-- Fork the repository and submit a pull request.
-- Open an issue to report bugs or suggest improvements.
+-   Fork the repository and submit a pull request.
+-   Open an issue to report bugs or suggest improvements.
 
 ## License
 
