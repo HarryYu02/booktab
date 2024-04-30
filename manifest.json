@@ -36,6 +36,13 @@
                 "default": "Ctrl+I"
             },
             "description": "Command actions"
+        },
+        "cycle_mode": {
+            "suggested_key": {
+                "default": "Ctrl+B",
+                "mac": "Command+B"
+            },
+            "description": "Cycle through different modes"
         }
     },
     "web_accessible_resources": [

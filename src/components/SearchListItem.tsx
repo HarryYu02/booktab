@@ -10,7 +10,7 @@ const SearchListItem = ({ searchText }: SearchListItemProps) => {
         <ListItem
             type="command"
             item={{
-                name: "Search",
+                name: `Search ${searchText}`,
                 description: `Search '${searchText}'`,
                 icon: FaSearch,
                 func: () => {

@@ -21,7 +21,7 @@ const BookmarkList = ({
                             bookmark.bookmark.title,
                             bookmark.bookmark.url ?? "",
                             "bookmarks",
-                        ]}
+                        ].filter((x) => x !== "")}
                         index={index}
                     />
                 );
