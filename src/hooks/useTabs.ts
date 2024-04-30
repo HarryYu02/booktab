@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useTabs = () => {
+    const [ready, setReady] = useState(false);
     const [tabData, setTabData] = useState<chrome.tabs.Tab[]>([]);
 
     useEffect(() => {
@@ -12,12 +13,15 @@ const useTabs = () => {
             return tabs;
         };
         fetchTabs()
-            .then((tabs) => setTabData(tabs))
+            .then((tabs) => {
+                setTabData(tabs);
+                setReady(true);
+            })
             .catch((error) => console.log(error));
         return setTabData([]);
     }, []);
 
-    return tabData;
+    return { tabData, isLoading: !ready };
 };
 
 export default useTabs;

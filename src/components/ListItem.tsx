@@ -98,12 +98,19 @@ const ListItem = ({
                     />
                 )}
                 <div className="w-full flex-grow overflow-hidden text-start">
-                    <p className="text-xs text-secondary">
-                        {type === "bookmark" && (
-                            <BookmarkPath path={item.path} />
-                        )}
-                    </p>
-                    <p className="flex items-center gap-2 truncate text-lg text-primary">
+                    {type === "bookmark" ? (
+                        <BookmarkPath
+                            path={item.path}
+                            identifier={item.bookmark.id}
+                        />
+                    ) : type === "tab" ? (
+                        <p className="text-sm text-muted-foreground">"Tab"</p>
+                    ) : (
+                        <p className="text-sm text-muted-foreground">
+                            "Command"
+                        </p>
+                    )}
+                    <p className="flex items-center gap-2 truncate text-xl text-primary">
                         {type === "command"
                             ? item.name
                             : type === "tab"

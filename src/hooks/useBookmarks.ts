@@ -35,6 +35,7 @@ const processBookmark = (
 };
 
 const useBookmarks = () => {
+    const [ready, setReady] = useState(false);
     const [bookmarkData, setBookmarkData] = useState<
         {
             bookmark: chrome.bookmarks.BookmarkTreeNode;
@@ -46,6 +47,7 @@ const useBookmarks = () => {
         const fetchBookmarks = async () => {
             const allBookmarks = await chrome.bookmarks.getTree();
             const fetchedBookmarks = processBookmark(allBookmarks, []);
+            setReady(true);
 
             return fetchedBookmarks;
         };
@@ -57,7 +59,7 @@ const useBookmarks = () => {
         return () => setBookmarkData([]);
     }, []);
 
-    return bookmarkData;
+    return { bookmarkData, isLoading: !ready };
 };
 
 export default useBookmarks;

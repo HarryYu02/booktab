@@ -35,8 +35,8 @@ const SearchingList = () => {
     const [openActions, setOpenActions] = useState(false);
     const [commands, setCommands] = useState<chrome.commands.Command[]>([]);
     const [mode, setMode] = useState<ItemType | "all">("all");
-    const tabData = useTabs();
-    const bookmarkData = useBookmarks();
+    const { tabData, isLoading: isTabLoading } = useTabs();
+    const { bookmarkData, isLoading: isBookmarkLoading } = useBookmarks();
     const listRef = useRef<ElementRef<typeof CommandList>>(null);
     const inputRef = useRef<ElementRef<typeof CommandInput>>(null);
 
@@ -108,7 +108,7 @@ const SearchingList = () => {
     const itemValue = currentItem.slice(prefixIndex + 1, suffixIndex);
     // const itemIdentifier = currentItem.slice(suffixIndex + 1);
 
-    if (bookmarkData.length === 0 || tabData.length === 0) return <Loading />;
+    if (isTabLoading || isBookmarkLoading) return <Loading />;
 
     return (
         <Command
@@ -186,7 +186,10 @@ const SearchingList = () => {
                             ?.shortcut?.split("")
                             .map((key) => {
                                 return (
-                                    <CommandShortcut className="size-8 rounded-lg bg-secondary p-2">
+                                    <CommandShortcut
+                                        key={`cycleMode-${key}`}
+                                        className="size-8 rounded-lg bg-secondary p-2"
+                                    >
                                         {key}
                                     </CommandShortcut>
                                 );
@@ -227,7 +230,7 @@ const SearchingList = () => {
                                         (bookmark) =>
                                             bookmark.bookmark.title ===
                                             itemValue
-                                    ),
+                                    )?.bookmark,
                                 }
                               : { itemType, command: "command" })}
                     />
