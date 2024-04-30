@@ -15,7 +15,10 @@ const BookmarkList = ({
                     <ListItem
                         key={`bookmark-${bookmark.bookmark.id}`}
                         type="bookmark"
-                        item={bookmark.bookmark}
+                        item={{
+                            bookmark: bookmark.bookmark,
+                            path: bookmark.path,
+                        }}
                         keywords={[
                             ...bookmark.path,
                             bookmark.bookmark.title,

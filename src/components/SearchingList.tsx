@@ -40,6 +40,21 @@ const SearchingList = () => {
     const listRef = useRef<ElementRef<typeof CommandList>>(null);
     const inputRef = useRef<ElementRef<typeof CommandInput>>(null);
 
+    const cycleMode = () => {
+        setMode((prev) => {
+            switch (prev) {
+                case "all":
+                    return "tab";
+                case "tab":
+                    return "bookmark";
+                case "bookmark":
+                    return "command";
+                case "command":
+                    return "all";
+            }
+        });
+    };
+
     useEffect(() => {
         const onCommandHandler = (command: string) => {
             // console.log(`Command "${command}" triggered`);
@@ -49,18 +64,7 @@ const SearchingList = () => {
                     break;
 
                 case "cycle_mode":
-                    setMode((prev) => {
-                        switch (prev) {
-                            case "all":
-                                return "tab";
-                            case "tab":
-                                return "bookmark";
-                            case "bookmark":
-                                return "command";
-                            case "command":
-                                return "all";
-                        }
-                    });
+                    cycleMode();
                     break;
 
                 default:
@@ -157,9 +161,10 @@ const SearchingList = () => {
                 </CommandGroup>
             </CommandList>
             <div className="flex items-center justify-between border-t p-1">
-                <div className="flex px-2">
+                <div className="flex gap-1 px-2">
                     <Badge
                         className={cn(
+                            "w-32 transition-all duration-200 ease-in-out",
                             mode === "tab" && "bg-teal-600 dark:bg-teal-400",
                             mode === "bookmark" &&
                                 "bg-cyan-700 dark:bg-cyan-400",
@@ -167,11 +172,14 @@ const SearchingList = () => {
                                 "bg-amber-600 dark:bg-amber-400"
                         )}
                     >
-                        {capitalizeFirstLetter(mode) + " Mode"}
+                        <span className="mx-auto">
+                            {capitalizeFirstLetter(mode) + " Mode"}
+                        </span>
                     </Badge>
                     <Button
                         className="flex items-center gap-2 px-2 text-base hover:cursor-default"
                         variant={"ghost"}
+                        onClick={() => cycleMode()}
                     >
                         {commands
                             .find((command) => command.name === "cycle_mode")
