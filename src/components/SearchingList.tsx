@@ -150,7 +150,8 @@ const SearchingList = () => {
                           ? {
                                 itemType,
                                 bookmark: bookmarkData.find(
-                                    (bookmark) => bookmark.title === itemValue
+                                    (bookmark) =>
+                                        bookmark.bookmark.title === itemValue
                                 ),
                             }
                           : { itemType, command: "command" })}

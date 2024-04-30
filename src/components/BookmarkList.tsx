@@ -3,19 +3,23 @@ import ListItem from "./ListItem";
 const BookmarkList = ({
     bookmarkData,
 }: {
-    bookmarkData: chrome.bookmarks.BookmarkTreeNode[];
+    bookmarkData: {
+        bookmark: chrome.bookmarks.BookmarkTreeNode;
+        path: string[];
+    }[];
 }) => {
     return (
         <>
             {bookmarkData.map((bookmark, index) => {
                 return (
                     <ListItem
-                        key={`bookmark-${bookmark.id}`}
+                        key={`bookmark-${bookmark.bookmark.id}`}
                         type="bookmark"
-                        item={bookmark}
+                        item={bookmark.bookmark}
                         keywords={[
-                            bookmark.title,
-                            bookmark.url ?? "",
+                            ...bookmark.path,
+                            bookmark.bookmark.title,
+                            bookmark.bookmark.url ?? "",
                             "bookmarks",
                         ]}
                         index={index}

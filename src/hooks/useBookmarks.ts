@@ -2,34 +2,49 @@ import { useState, useEffect } from "react";
 
 const useBookmarks = () => {
     const [bookmarkData, setBookmarkData] = useState<
-        chrome.bookmarks.BookmarkTreeNode[]
+        {
+            bookmark: chrome.bookmarks.BookmarkTreeNode;
+            path: string[];
+        }[]
     >([]);
 
     useEffect(() => {
         const fetchBookmarks = async () => {
             const processBookmark = (
-                bookmarks: chrome.bookmarks.BookmarkTreeNode[]
+                bookmarks: chrome.bookmarks.BookmarkTreeNode[],
+                path: string[]
             ) => {
-                let tempBookmarks: chrome.bookmarks.BookmarkTreeNode[] = [];
+                let tempBookmarks: {
+                    bookmark: chrome.bookmarks.BookmarkTreeNode;
+                    path: string[];
+                }[] = [];
+
                 for (let i = 0; i < bookmarks.length; i++) {
                     const bookmark = bookmarks[i];
+
                     // link
                     if (bookmark.url) {
-                        tempBookmarks.push(bookmark);
+                        tempBookmarks.push({ bookmark, path });
                     }
                     // folder
                     if (bookmark.children) {
                         const folder = bookmark.children;
                         tempBookmarks = [
                             ...tempBookmarks,
-                            ...processBookmark(folder),
+                            ...processBookmark(folder, [
+                                ...path,
+                                bookmark.title,
+                            ]),
                         ];
                     }
                 }
+
                 return tempBookmarks;
             };
             const allBookmarks = await chrome.bookmarks.getTree();
-            const fetchedBookmarks = processBookmark(allBookmarks);
+            const fetchedBookmarks = processBookmark(allBookmarks, []);
+
+            console.log(fetchedBookmarks);
 
             return fetchedBookmarks;
         };
