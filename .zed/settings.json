@@ -1,0 +1,31 @@
+{
+  "language_overrides": {
+    "TSX": {
+      "format_on_save": {
+        "external": {
+          "command": "bunx",
+          "arguments": [
+            "prettier",
+            "--stdin-filepath",
+            "{buffer_path}",
+            "--write"
+          ]
+        }
+      }
+    },
+    "TypeScript": {
+      "format_on_save": {
+        "external": {
+          "command": "bunx",
+          "arguments": [
+            "prettier",
+            "--stdin-filepath",
+            "{buffer_path}",
+            "--write"
+          ]
+        }
+      }
+    }
+  },
+  "code_actions_on_format": {}
+}

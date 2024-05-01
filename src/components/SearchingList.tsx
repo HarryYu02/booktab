@@ -35,8 +35,10 @@ const SearchingList = () => {
     const [openActions, setOpenActions] = useState(false);
     const [commands, setCommands] = useState<chrome.commands.Command[]>([]);
     const [mode, setMode] = useState<ItemType | "all">("all");
+
     const { tabData, isLoading: isTabLoading } = useTabs();
     const { bookmarkData, isLoading: isBookmarkLoading } = useBookmarks();
+
     const listRef = useRef<ElementRef<typeof CommandList>>(null);
     const inputRef = useRef<ElementRef<typeof CommandInput>>(null);
 
@@ -162,25 +164,26 @@ const SearchingList = () => {
             </CommandList>
             <div className="flex items-center justify-between border-t p-1">
                 <div className="flex gap-1 px-2">
-                    <Badge
-                        className={cn(
-                            "w-32 transition-all duration-200 ease-in-out",
-                            mode === "tab" && "bg-teal-600 dark:bg-teal-400",
-                            mode === "bookmark" &&
-                                "bg-cyan-700 dark:bg-cyan-400",
-                            mode === "command" &&
-                                "bg-amber-600 dark:bg-amber-400"
-                        )}
-                    >
-                        <span className="mx-auto">
-                            {capitalizeFirstLetter(mode) + " Mode"}
-                        </span>
-                    </Badge>
                     <Button
                         className="flex items-center gap-2 px-2 text-base hover:cursor-default"
                         variant={"ghost"}
                         onClick={() => cycleMode()}
                     >
+                        <Badge
+                            className={cn(
+                                "transition-all duration-200 ease-in-out",
+                                mode === "tab" &&
+                                    "bg-teal-600 dark:bg-teal-400",
+                                mode === "bookmark" &&
+                                    "bg-cyan-700 dark:bg-cyan-400",
+                                mode === "command" &&
+                                    "bg-amber-600 dark:bg-amber-400"
+                            )}
+                        >
+                            <span className="mx-auto">
+                                {capitalizeFirstLetter(mode) + " Mode"}
+                            </span>
+                        </Badge>
                         {commands
                             .find((command) => command.name === "cycle_mode")
                             ?.shortcut?.split("")
@@ -196,7 +199,7 @@ const SearchingList = () => {
                             }) ?? "Not Set"}
                     </Button>
                 </div>
-                <div className="flex">
+                <div className="flex items-center">
                     <Button
                         className="flex items-center gap-2 px-2 text-base hover:cursor-default"
                         variant={"ghost"}
@@ -206,7 +209,7 @@ const SearchingList = () => {
                             <IoIosReturnLeft className="size-4" />
                         </CommandShortcut>
                     </Button>
-                    <Separator orientation="vertical" className="m-2 h-3/4" />
+                    <Separator orientation="vertical" className="m-2 h-6" />
                     <CommandActions
                         itemName={itemValue}
                         openActions={openActions}
@@ -220,7 +223,7 @@ const SearchingList = () => {
                             ? {
                                   itemType,
                                   tab: tabData.find(
-                                      (tab) => tab.title === itemValue
+                                      (tab) => tab.tab.title === itemValue
                                   ),
                               }
                             : itemType === "bookmark"

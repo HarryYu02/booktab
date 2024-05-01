@@ -1,59 +1,67 @@
 {
-    "name": "BookTab",
-    "description": "Quickly search and navigate through bookmarks, bookmark folders, and tabs with one hand.",
-    "version": "1.0",
-    "manifest_version": 3,
-    "action": {
-        "default_popup": "index.html",
-        "default_title": "Click to open panel"
+  "name": "BookTab",
+  "description": "Quickly search and navigate through bookmarks, bookmark folders, and tabs with one hand.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Click to open panel"
+  },
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "icons": {
+    "128": "public/icon128.png"
+  },
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "permissions": [
+    "tabGroups",
+    "favicon",
+    "bookmarks",
+    "tabs",
+    "activeTab",
+    "search",
+    "storage",
+    "sidePanel"
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "Command+Shift+P"
+      }
     },
-    "side_panel": {
-        "default_path": "index.html"
+    "command_actions": {
+      "suggested_key": {
+        "default": "Ctrl+I",
+        "mac": "Command+I"
+      },
+      "description": "Command actions"
     },
-    "icons": {
-        "128": "public/icon128.png"
+    "cycle_mode": {
+      "suggested_key": {
+        "default": "Ctrl+B",
+        "mac": "Command+B"
+      },
+      "description": "Cycle through different modes"
     },
-    "host_permissions": ["http://*/*", "https://*/*"],
-    "permissions": [
-        "tabGroups",
-        "favicon",
-        "bookmarks",
-        "tabs",
-        "activeTab",
-        "search",
-        "storage",
-        "sidePanel"
-    ],
-    "commands": {
-        "_execute_action": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+P",
-                "mac": "Command+Shift+P"
-            }
-        },
-        "command_actions": {
-            "suggested_key": {
-                "default": "Ctrl+I"
-            },
-            "description": "Command actions"
-        },
-        "cycle_mode": {
-            "suggested_key": {
-                "default": "Ctrl+B",
-                "mac": "Command+B"
-            },
-            "description": "Cycle through different modes"
-        }
-    },
-    "web_accessible_resources": [
-        {
-            "resources": ["_favicon/*"],
-            "matches": ["<all_urls>"],
-            "extension_ids": ["*"]
-        }
-    ],
-    "background": {
-        "service_worker": "src/background.ts",
-        "type": "module"
+    "random": {
+      "suggested_key": {
+        "default": "Ctrl+U",
+        "mac": "Command+U"
+      },
+      "description": "random"
     }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["_favicon/*"],
+      "matches": ["<all_urls>"],
+      "extension_ids": ["*"]
+    }
+  ],
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module"
+  }
 }

@@ -11,7 +11,7 @@ interface BookmarkItem {
 
 interface TabItem {
     type: "tab";
-    item: chrome.tabs.Tab;
+    item: { tab: chrome.tabs.Tab; group: chrome.tabGroups.TabGroup | null };
 }
 
 interface CmdItem {
@@ -42,7 +42,7 @@ const ListItem = ({
             case "tab":
                 chrome.tabs
                     .highlight({
-                        tabs: item.index,
+                        tabs: item.tab.index,
                     })
                     .catch((error) => console.log(error));
                 window.close();
@@ -74,7 +74,7 @@ const ListItem = ({
                 type === "command"
                     ? `command-${item.name}`
                     : type === "tab"
-                      ? `${type}-${item.title}-${index}`
+                      ? `${type}-${item.tab.title}-${index}`
                       : `${type}-${item.bookmark.title}-${index}`
             }
             forceMount={forceMount}
@@ -92,9 +92,9 @@ const ListItem = ({
                     />
                 ) : (
                     <img
-                        src={item.favIconUrl}
+                        src={item.tab.favIconUrl}
                         className="size-6"
-                        alt={`${item.title}-favicon`}
+                        alt={`${item.tab.title}-favicon`}
                     />
                 )}
                 <div className="w-full flex-grow overflow-hidden text-start">
@@ -104,24 +104,24 @@ const ListItem = ({
                             identifier={item.bookmark.id}
                         />
                     ) : type === "tab" ? (
-                        <p className="text-sm text-muted-foreground">"Tab"</p>
-                    ) : (
                         <p className="text-sm text-muted-foreground">
-                            "Command"
+                            {item.group?.title ?? "Normal Tab"}
                         </p>
+                    ) : (
+                        <p className="text-sm text-muted-foreground">Command</p>
                     )}
                     <p className="flex items-center gap-2 truncate text-xl text-primary">
                         {type === "command"
                             ? item.name
                             : type === "tab"
-                              ? item.title
+                              ? item.tab.title
                               : item.bookmark.title}
                     </p>
-                    <p className="truncate text-xs text-muted-foreground">
+                    <p className="truncate text-xs text-muted-foreground/50">
                         {type === "command"
                             ? item.description
                             : type === "tab"
-                              ? item.url
+                              ? item.tab.url
                               : item.bookmark.url}
                     </p>
                 </div>
