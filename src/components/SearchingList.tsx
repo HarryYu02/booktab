@@ -222,18 +222,20 @@ const SearchingList = () => {
                         {...(itemType === "tab"
                             ? {
                                   itemType,
-                                  tab: tabData.find(
-                                      (tab) => tab.tab.title === itemValue
-                                  ),
+                                  tab:
+                                      tabData.find(
+                                          (tab) => tab.tab.title === itemValue
+                                      )?.tab || null,
                               }
                             : itemType === "bookmark"
                               ? {
                                     itemType,
-                                    bookmark: bookmarkData.find(
-                                        (bookmark) =>
-                                            bookmark.bookmark.title ===
-                                            itemValue
-                                    )?.bookmark,
+                                    bookmark:
+                                        bookmarkData.find(
+                                            (bookmark) =>
+                                                bookmark.bookmark.title ===
+                                                itemValue
+                                        )?.bookmark || null,
                                 }
                               : { itemType, command: "command" })}
                     />

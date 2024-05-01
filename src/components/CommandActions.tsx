@@ -18,12 +18,12 @@ import { capitalizeFirstLetter } from "@/lib/utils";
 
 type TabTarget = {
     itemType: "tab";
-    tab: chrome.tabs.Tab;
+    tab: chrome.tabs.Tab | null;
 };
 
 type BookmarkTarget = {
     itemType: "bookmark";
-    bookmark: chrome.bookmarks.BookmarkTreeNode;
+    bookmark: chrome.bookmarks.BookmarkTreeNode | null;
 };
 
 type CmdTarget = {
@@ -75,7 +75,7 @@ const CommandActions = (
                                     onSelect={() => {
                                         chrome.tabs
                                             .remove(
-                                                props.tab.id ??
+                                                props.tab?.id ??
                                                     chrome.tabs.TAB_ID_NONE
                                             )
                                             .catch((error) => {
@@ -92,7 +92,7 @@ const CommandActions = (
                                     onSelect={() => {
                                         chrome.tabs
                                             .duplicate(
-                                                props.tab.id ??
+                                                props.tab?.id ??
                                                     chrome.tabs.TAB_ID_NONE
                                             )
                                             .catch((error) => {
@@ -111,7 +111,9 @@ const CommandActions = (
                                 <CommandItem
                                     onSelect={() => {
                                         chrome.tabs
-                                            .update({ url: props.bookmark.url })
+                                            .update({
+                                                url: props.bookmark?.url,
+                                            })
                                             .catch((error) => {
                                                 console.log(error);
                                             });
