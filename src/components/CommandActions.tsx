@@ -1,20 +1,19 @@
-import { Button } from "./ui/button";
-import { MdDelete, MdFolderCopy } from "react-icons/md";
-import {
-    Command,
-    CommandInput,
-    CommandItem,
-    CommandList,
-    CommandShortcut,
-} from "./ui/command";
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover";
-import React from "react";
-import { LuReplace } from "react-icons/lu";
 import { capitalizeFirstLetter } from "@/lib/utils";
+import React from "react";
+import BookmarkActions from "./BookmarkActions";
+import TabActions from "./TabActions";
+import { Button } from "./ui/button";
+import {
+    Command,
+    CommandInput,
+    CommandList,
+    CommandShortcut,
+} from "./ui/command";
 
 type TabTarget = {
     itemType: "tab";
@@ -70,61 +69,9 @@ const CommandActions = (
                     </div>
                     <CommandList>
                         {itemType === "tab" ? (
-                            <>
-                                <CommandItem
-                                    onSelect={() => {
-                                        chrome.tabs
-                                            .remove(
-                                                props.tab?.id ??
-                                                    chrome.tabs.TAB_ID_NONE
-                                            )
-                                            .catch((error) => {
-                                                console.log(error);
-                                            });
-                                        window.close();
-                                    }}
-                                    className="flex items-center gap-2"
-                                >
-                                    <MdDelete className="size-4 p-0" />
-                                    Close Tab
-                                </CommandItem>
-                                <CommandItem
-                                    onSelect={() => {
-                                        chrome.tabs
-                                            .duplicate(
-                                                props.tab?.id ??
-                                                    chrome.tabs.TAB_ID_NONE
-                                            )
-                                            .catch((error) => {
-                                                console.log(error);
-                                            });
-                                        window.close();
-                                    }}
-                                    className="flex items-center gap-2"
-                                >
-                                    <MdFolderCopy className="size-4 p-0" />
-                                    Copy Tab
-                                </CommandItem>
-                            </>
+                            <TabActions tab={props.tab} />
                         ) : itemType === "bookmark" ? (
-                            <>
-                                <CommandItem
-                                    onSelect={() => {
-                                        chrome.tabs
-                                            .update({
-                                                url: props.bookmark?.url,
-                                            })
-                                            .catch((error) => {
-                                                console.log(error);
-                                            });
-                                        window.close();
-                                    }}
-                                    className="flex items-center gap-2"
-                                >
-                                    <LuReplace className="size-4" />
-                                    Open in current tab
-                                </CommandItem>
-                            </>
+                            <BookmarkActions bookmark={props.bookmark} />
                         ) : itemType === "command" ? (
                             <>{props.command}</>
                         ) : null}

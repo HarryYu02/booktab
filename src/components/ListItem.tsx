@@ -3,6 +3,7 @@ import { capitalizeFirstLetter, cn, faviconURL } from "@/lib/utils";
 import { CommandItem } from "./ui/command";
 import { IconType } from "react-icons";
 import BookmarkPath from "./BookmarkPath";
+import { MdPushPin } from "react-icons/md";
 
 interface BookmarkItem {
     type: "bookmark";
@@ -105,6 +106,9 @@ const ListItem = ({
                         />
                     ) : type === "tab" ? (
                         <p className="text-sm text-muted-foreground">
+                            {item.tab.pinned && (
+                                <MdPushPin className="mr-1 inline-flex" />
+                            )}
                             {item.group?.title ?? "Normal Tab"}
                         </p>
                     ) : (
