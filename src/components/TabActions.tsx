@@ -7,7 +7,13 @@ import {
 import { CommandItem } from "./ui/command";
 import { RiUnpinFill } from "react-icons/ri";
 
-const TabActions = ({ tab }: { tab: chrome.tabs.Tab | null }) => {
+const TabActions = ({
+    tab,
+    refetchTabs,
+}: {
+    tab: chrome.tabs.Tab | null;
+    refetchTabs: () => void;
+}) => {
     return (
         <>
             <CommandItem
@@ -17,7 +23,7 @@ const TabActions = ({ tab }: { tab: chrome.tabs.Tab | null }) => {
                         .catch((error) => {
                             console.log(error);
                         });
-                    window.close();
+                    refetchTabs();
                 }}
                 className="flex items-center gap-2"
             >
@@ -31,7 +37,7 @@ const TabActions = ({ tab }: { tab: chrome.tabs.Tab | null }) => {
                         .catch((error) => {
                             console.log(error);
                         });
-                    window.close();
+                    refetchTabs();
                 }}
                 className="flex items-center gap-2"
             >
@@ -45,7 +51,7 @@ const TabActions = ({ tab }: { tab: chrome.tabs.Tab | null }) => {
                         .catch((error) => {
                             console.log(error);
                         });
-                    window.close();
+                    refetchTabs();
                 }}
                 className="flex items-center gap-2"
             >
@@ -61,7 +67,7 @@ const TabActions = ({ tab }: { tab: chrome.tabs.Tab | null }) => {
                         .catch((error) => {
                             console.log(error);
                         });
-                    window.close();
+                    refetchTabs();
                 }}
                 className="flex items-center gap-2"
             >

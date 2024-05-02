@@ -36,9 +36,19 @@ const CommandActions = (
         openActions: boolean;
         setOpenActions: React.Dispatch<React.SetStateAction<boolean>>;
         shortcut: chrome.commands.Command | null;
+        refetchTabs: () => void;
+        refetchBookmarks: () => void;
     }
 ) => {
-    const { shortcut, itemName, itemType, openActions, setOpenActions } = props;
+    const {
+        shortcut,
+        itemName,
+        itemType,
+        openActions,
+        setOpenActions,
+        refetchTabs,
+        refetchBookmarks,
+    } = props;
 
     return (
         <Popover open={openActions} onOpenChange={setOpenActions}>
@@ -69,9 +79,15 @@ const CommandActions = (
                     </div>
                     <CommandList>
                         {itemType === "tab" ? (
-                            <TabActions tab={props.tab} />
+                            <TabActions
+                                tab={props.tab}
+                                refetchTabs={refetchTabs}
+                            />
                         ) : itemType === "bookmark" ? (
-                            <BookmarkActions bookmark={props.bookmark} />
+                            <BookmarkActions
+                                bookmark={props.bookmark}
+                                refetchBookmarks={refetchBookmarks}
+                            />
                         ) : itemType === "command" ? (
                             <>{props.command}</>
                         ) : null}

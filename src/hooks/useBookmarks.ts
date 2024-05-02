@@ -34,6 +34,13 @@ const processBookmark = (
     return tempBookmarks;
 };
 
+const fetchBookmarks = async () => {
+    const allBookmarks = await chrome.bookmarks.getTree();
+    const fetchedBookmarks = processBookmark(allBookmarks, []);
+
+    return fetchedBookmarks;
+};
+
 const useBookmarks = () => {
     const [ready, setReady] = useState(false);
     const [bookmarkData, setBookmarkData] = useState<
@@ -43,23 +50,28 @@ const useBookmarks = () => {
         }[]
     >([]);
 
-    useEffect(() => {
-        const fetchBookmarks = async () => {
-            const allBookmarks = await chrome.bookmarks.getTree();
-            const fetchedBookmarks = processBookmark(allBookmarks, []);
-            setReady(true);
-
-            return fetchedBookmarks;
-        };
-
+    const refetch = () => {
+        setReady(false);
         fetchBookmarks()
-            .then((bookmarks) => setBookmarkData(bookmarks))
+            .then((bookmarks) => {
+                setBookmarkData(bookmarks);
+                setReady(true);
+            })
+            .catch((error) => console.log(error));
+    };
+
+    useEffect(() => {
+        fetchBookmarks()
+            .then((bookmarks) => {
+                setBookmarkData(bookmarks);
+                setReady(true);
+            })
             .catch((error) => console.log(error));
 
         return () => setBookmarkData([]);
     }, []);
 
-    return { bookmarkData, isLoading: !ready };
+    return { bookmarkData, isLoading: !ready, refetch };
 };
 
 export default useBookmarks;

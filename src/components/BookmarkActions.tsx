@@ -3,8 +3,10 @@ import { CommandItem } from "./ui/command";
 
 const BookmarkActions = ({
     bookmark,
+    refetchBookmarks,
 }: {
     bookmark: chrome.bookmarks.BookmarkTreeNode | null;
+    refetchBookmarks: () => void;
 }) => {
     return (
         <>

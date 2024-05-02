@@ -35,6 +35,16 @@ const useTabs = () => {
         }[]
     >([]);
 
+    const refetch = () => {
+        setReady(false);
+        fetchTabs()
+            .then((tabs) => {
+                setTabData(tabs);
+                setReady(true);
+            })
+            .catch((error) => console.log(error));
+    };
+
     useEffect(() => {
         fetchTabs()
             .then((tabs) => {
@@ -46,7 +56,7 @@ const useTabs = () => {
         return setTabData([]);
     }, []);
 
-    return { tabData, isLoading: !ready };
+    return { tabData, isLoading: !ready, refetch };
 };
 
 export default useTabs;

@@ -36,8 +36,16 @@ const SearchingList = () => {
     const [commands, setCommands] = useState<chrome.commands.Command[]>([]);
     const [mode, setMode] = useState<ItemType | "all">("all");
 
-    const { tabData, isLoading: isTabLoading } = useTabs();
-    const { bookmarkData, isLoading: isBookmarkLoading } = useBookmarks();
+    const {
+        tabData,
+        isLoading: isTabLoading,
+        refetch: refetchTabs,
+    } = useTabs();
+    const {
+        bookmarkData,
+        isLoading: isBookmarkLoading,
+        refetch: refetchBookmarks,
+    } = useBookmarks();
 
     const listRef = useRef<ElementRef<typeof CommandList>>(null);
     const inputRef = useRef<ElementRef<typeof CommandInput>>(null);
@@ -110,7 +118,7 @@ const SearchingList = () => {
     const itemValue = currentItem.slice(prefixIndex + 1, suffixIndex);
     // const itemIdentifier = currentItem.slice(suffixIndex + 1);
 
-    if (isTabLoading || isBookmarkLoading) return <Loading />;
+    // if (isTabLoading || isBookmarkLoading) return <Loading />;
 
     return (
         <Command
@@ -138,26 +146,30 @@ const SearchingList = () => {
             >
                 <CommandGroup heading="Result">
                     <CommandEmpty>No results found</CommandEmpty>
-                    {(mode === "all" || mode === "tab") && (
-                        <TabList tabData={tabData} />
-                    )}
-                    {(mode === "all" || mode === "bookmark") && (
-                        <BookmarkList bookmarkData={bookmarkData} />
-                    )}
-                    {(mode === "all" || mode === "command") && (
+                    {!isTabLoading && !isBookmarkLoading && (
                         <>
-                            <ThemeListItem
-                                key="dark-theme"
-                                targetTheme="dark"
-                            />
-                            <ThemeListItem
-                                key="light-theme"
-                                targetTheme="light"
-                            />
-                            <SearchListItem
-                                key="search-google"
-                                searchText={searchText}
-                            />
+                            {(mode === "all" || mode === "tab") && (
+                                <TabList tabData={tabData} />
+                            )}
+                            {(mode === "all" || mode === "bookmark") && (
+                                <BookmarkList bookmarkData={bookmarkData} />
+                            )}
+                            {(mode === "all" || mode === "command") && (
+                                <>
+                                    <ThemeListItem
+                                        key="dark-theme"
+                                        targetTheme="dark"
+                                    />
+                                    <ThemeListItem
+                                        key="light-theme"
+                                        targetTheme="light"
+                                    />
+                                    <SearchListItem
+                                        key="search-google"
+                                        searchText={searchText}
+                                    />
+                                </>
+                            )}
                         </>
                     )}
                 </CommandGroup>
@@ -219,6 +231,16 @@ const SearchingList = () => {
                                 (command) => command.name === "command_actions"
                             ) ?? null
                         }
+                        refetchTabs={() => {
+                            refetchTabs();
+                            setOpenActions(false);
+                            setCurrentItem("");
+                        }}
+                        refetchBookmarks={() => {
+                            refetchBookmarks();
+                            setOpenActions(false);
+                            setCurrentItem("");
+                        }}
                         {...(itemType === "tab"
                             ? {
                                   itemType,
